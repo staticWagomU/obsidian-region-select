@@ -31,5 +31,8 @@
 	},
 	"dependencies": {
 		"obsidian": "latest"
+	},
+	"pnpm": {
+		"onlyBuiltDependencies": ["esbuild"]
 	}
 }
