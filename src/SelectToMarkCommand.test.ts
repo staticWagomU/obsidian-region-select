@@ -23,9 +23,17 @@ describe("SelectToMarkCommand", () => {
 
 	it("should handle null mark when mark is not set", () => {
 		const getMarkSpy = vi.spyOn(markManager, "getMark").mockReturnValue(null);
-		
+
 		selectToMarkCommand.execute(mockEditor);
 
 		expect(getMarkSpy).toHaveBeenCalled();
+	});
+
+	it("should display error notice when mark is not set", () => {
+		vi.spyOn(markManager, "getMark").mockReturnValue(null);
+
+		selectToMarkCommand.execute(mockEditor);
+
+		expect(mockShowNotice).toHaveBeenCalledWith("マークが設定されていません");
 	});
 });

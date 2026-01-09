@@ -9,8 +9,9 @@ export class SelectToMarkCommand {
 
 	execute(editor: Editor): void {
 		const mark = this.markManager.getMark();
-		
+
 		if (mark === null) {
+			this.showNotice("マークが設定されていません");
 			return;
 		}
 	}
