@@ -224,9 +224,15 @@ const scrum: ScrumDashboard = {
         test: "set-markコマンドが現在のカーソル位置でMarkManager.setMarkを呼ぶことをテストする",
         implementation: "set-markコマンドを実装し、Editor.getCursorで取得した位置をMarkManagerに保存する",
         type: "behavioral",
-        status: "green",
-        commits: [],
-        notes: ["テストファイル作成: src/SetMarkCommand.test.ts", "モックを使ったコマンドテスト", "SetMarkCommand実装完了"],
+        status: "completed",
+        commits: [
+          {
+            hash: "8fe8202",
+            message: "feat: implement SetMarkCommand to save cursor position",
+            phase: "green",
+          },
+        ],
+        notes: ["テストファイル作成: src/SetMarkCommand.test.ts", "モックを使ったコマンドテスト", "SetMarkCommand実装完了", "リファクタリング不要: コードはシンプルで明確"],
       },
       {
         test: "set-markコマンド実行時にNoticeで位置情報が表示されることをテストする",
