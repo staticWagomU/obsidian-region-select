@@ -209,126 +209,11 @@ const scrum: ScrumDashboard = {
           verification: "file-openイベントでclearMarkが呼ばれアイコンがリセットされることを確認",
         },
       ],
-      status: "ready",
+      status: "done",
     },
   ],
 
-  sprint: {
-    number: 4,
-    pbi_id: "PBI-004",
-    goal: "リボンボタンでマーク設定と選択を切り替え可能にし、マーク状態の視覚フィードバックと自動クリア機能を実装する",
-    status: "planning",
-    subtasks: [
-      {
-        test: "MarkManagerがマーク状態を判定できることをテストする",
-        implementation: "MarkManagerにhasMarkメソッドを実装し、マークの有無をbooleanで返す",
-        type: "behavioral",
-        status: "completed",
-        commits: [
-          {
-            hash: "3da084b",
-            message: "feat: implement MarkManager.hasMark() method",
-            phase: "green",
-          },
-        ],
-        notes: ["hasMarkメソッド追加", "テストケース3件追加", "リファクタリング不要: シンプルな実装"],
-      },
-      {
-        test: "ToggleMarkRibbonがマーク未設定時にSetMarkCommandを実行することをテストする",
-        implementation: "ToggleMarkRibbonクラスを作成し、hasMarkがfalseの時にSetMarkCommandを実行する",
-        type: "behavioral",
-        status: "completed",
-        commits: [
-          {
-            hash: "c520439",
-            message: "feat: create ToggleMarkRibbon class with SetMarkCommand execution",
-            phase: "green",
-          },
-        ],
-        notes: ["ToggleMarkRibbonクラス作成", "onClickメソッドで条件分岐", "リファクタリング不要: シンプルな実装"],
-      },
-      {
-        test: "ToggleMarkRibbonがマーク設定済み時にSelectToMarkCommandを実行することをテストする",
-        implementation: "hasMarkがtrueの時にSelectToMarkCommandを実行する",
-        type: "behavioral",
-        status: "completed",
-        commits: [
-          {
-            hash: "fb87546",
-            message: "feat: add SelectToMarkCommand execution to ToggleMarkRibbon",
-            phase: "green",
-          },
-        ],
-        notes: ["else節でSelectToMarkCommand実行", "テストケース追加", "リファクタリング不要: シンプルな実装"],
-      },
-      {
-        test: "ToggleMarkRibbonがマーク設定後にアイコンを更新することをテストする",
-        implementation: "SetMarkCommand実行後にsetIconを呼び出してアイコンを変更する",
-        type: "behavioral",
-        status: "completed",
-        commits: [
-          {
-            hash: "75a6e53",
-            message: "feat: add icon update and mark clear to ToggleMarkRibbon",
-            phase: "green",
-          },
-        ],
-        notes: ["setIcon('target')でアイコン更新", "視覚フィードバック実装", "リファクタリング不要"],
-      },
-      {
-        test: "ToggleMarkRibbonがSelect to Mark実行後にマークをクリアすることをテストする",
-        implementation: "SelectToMarkCommand実行後にclearMarkを呼び出す",
-        type: "behavioral",
-        status: "completed",
-        commits: [
-          {
-            hash: "75a6e53",
-            message: "feat: add icon update and mark clear to ToggleMarkRibbon",
-            phase: "green",
-          },
-        ],
-        notes: ["clearMarkで自動クリア", "選択後に新しい操作開始可能", "リファクタリング不要"],
-      },
-      {
-        test: "ToggleMarkRibbonがマーククリア後にアイコンをリセットすることをテストする",
-        implementation: "clearMark後にsetIconを呼び出して初期アイコンに戻す",
-        type: "behavioral",
-        status: "completed",
-        commits: [
-          {
-            hash: "75a6e53",
-            message: "feat: add icon update and mark clear to ToggleMarkRibbon",
-            phase: "green",
-          },
-        ],
-        notes: ["setIcon('locate')でリセット", "視覚的に状態をフィードバック", "リファクタリング不要"],
-      },
-      {
-        test: "RegionSelectPluginがfile-openイベントでマークをクリアすることをテストする",
-        implementation: "main.tsでfile-openイベントリスナーを登録し、clearMarkを呼び出す",
-        type: "behavioral",
-        status: "green",
-        commits: [],
-        notes: [],
-      },
-      {
-        test: "RegionSelectPluginがfile-openイベントでリボンアイコンをリセットすることをテストする",
-        implementation: "file-openイベントでリボンボタンのsetIconを呼び出して初期アイコンに戻す",
-        type: "behavioral",
-        status: "green",
-        commits: [],
-        notes: [],
-      },
-      {
-        test: "RegionSelectPluginがToggleMarkRibbonをリボンに登録することをテストする",
-        implementation: "main.tsでaddRibbonIconを使ってToggleMarkRibbonをリボンに追加する",
-        type: "structural",
-        status: "green",
-        commits: [],
-        notes: [],
-      },
-    ],
-  },
+  sprint: null,
 
   definition_of_done: {
     checks: [
@@ -339,6 +224,140 @@ const scrum: ScrumDashboard = {
   },
 
   completed: [
+    {
+      number: 4,
+      pbi_id: "PBI-004",
+      goal: "リボンボタンでマーク設定と選択を切り替え可能にし、マーク状態の視覚フィードバックと自動クリア機能を実装する",
+      status: "done",
+      subtasks: [
+        {
+          test: "MarkManagerがマーク状態を判定できることをテストする",
+          implementation: "MarkManagerにhasMarkメソッドを実装し、マークの有無をbooleanで返す",
+          type: "behavioral",
+          status: "completed",
+          commits: [
+            {
+              hash: "3da084b",
+              message: "feat: implement MarkManager.hasMark() method",
+              phase: "green",
+            },
+          ],
+          notes: ["hasMarkメソッド追加", "テストケース3件追加", "リファクタリング不要: シンプルな実装"],
+        },
+        {
+          test: "ToggleMarkRibbonがマーク未設定時にSetMarkCommandを実行することをテストする",
+          implementation: "ToggleMarkRibbonクラスを作成し、hasMarkがfalseの時にSetMarkCommandを実行する",
+          type: "behavioral",
+          status: "completed",
+          commits: [
+            {
+              hash: "c520439",
+              message: "feat: create ToggleMarkRibbon class with SetMarkCommand execution",
+              phase: "green",
+            },
+          ],
+          notes: ["ToggleMarkRibbonクラス作成", "onClickメソッドで条件分岐", "リファクタリング不要: シンプルな実装"],
+        },
+        {
+          test: "ToggleMarkRibbonがマーク設定済み時にSelectToMarkCommandを実行することをテストする",
+          implementation: "hasMarkがtrueの時にSelectToMarkCommandを実行する",
+          type: "behavioral",
+          status: "completed",
+          commits: [
+            {
+              hash: "fb87546",
+              message: "feat: add SelectToMarkCommand execution to ToggleMarkRibbon",
+              phase: "green",
+            },
+          ],
+          notes: ["else節でSelectToMarkCommand実行", "テストケース追加", "リファクタリング不要: シンプルな実装"],
+        },
+        {
+          test: "ToggleMarkRibbonがマーク設定後にアイコンを更新することをテストする",
+          implementation: "SetMarkCommand実行後にsetIconを呼び出してアイコンを変更する",
+          type: "behavioral",
+          status: "completed",
+          commits: [
+            {
+              hash: "75a6e53",
+              message: "feat: add icon update and mark clear to ToggleMarkRibbon",
+              phase: "green",
+            },
+          ],
+          notes: ["setIcon('target')でアイコン更新", "視覚フィードバック実装", "リファクタリング不要"],
+        },
+        {
+          test: "ToggleMarkRibbonがSelect to Mark実行後にマークをクリアすることをテストする",
+          implementation: "SelectToMarkCommand実行後にclearMarkを呼び出す",
+          type: "behavioral",
+          status: "completed",
+          commits: [
+            {
+              hash: "75a6e53",
+              message: "feat: add icon update and mark clear to ToggleMarkRibbon",
+              phase: "green",
+            },
+          ],
+          notes: ["clearMarkで自動クリア", "選択後に新しい操作開始可能", "リファクタリング不要"],
+        },
+        {
+          test: "ToggleMarkRibbonがマーククリア後にアイコンをリセットすることをテストする",
+          implementation: "clearMark後にsetIconを呼び出して初期アイコンに戻す",
+          type: "behavioral",
+          status: "completed",
+          commits: [
+            {
+              hash: "75a6e53",
+              message: "feat: add icon update and mark clear to ToggleMarkRibbon",
+              phase: "green",
+            },
+          ],
+          notes: ["setIcon('locate')でリセット", "視覚的に状態をフィードバック", "リファクタリング不要"],
+        },
+        {
+          test: "RegionSelectPluginがfile-openイベントでマークをクリアすることをテストする",
+          implementation: "main.tsでfile-openイベントリスナーを登録し、clearMarkを呼び出す",
+          type: "behavioral",
+          status: "completed",
+          commits: [
+            {
+              hash: "35db092",
+              message: "feat: integrate ToggleMarkRibbon into RegionSelectPlugin",
+              phase: "green",
+            },
+          ],
+          notes: ["file-openイベントでclearMark呼び出し", "ファイル切り替え時に自動クリア", "リファクタリング不要"],
+        },
+        {
+          test: "RegionSelectPluginがfile-openイベントでリボンアイコンをリセットすることをテストする",
+          implementation: "file-openイベントでリボンボタンのsetIconを呼び出して初期アイコンに戻す",
+          type: "behavioral",
+          status: "completed",
+          commits: [
+            {
+              hash: "35db092",
+              message: "feat: integrate ToggleMarkRibbon into RegionSelectPlugin",
+              phase: "green",
+            },
+          ],
+          notes: ["file-openイベントでsetIcon('locate')呼び出し", "視覚的に状態リセット", "リファクタリング不要"],
+        },
+        {
+          test: "RegionSelectPluginがToggleMarkRibbonをリボンに登録することをテストする",
+          implementation: "main.tsでaddRibbonIconを使ってToggleMarkRibbonをリボンに追加する",
+          type: "structural",
+          status: "completed",
+          commits: [
+            {
+              hash: "35db092",
+              message: "feat: integrate ToggleMarkRibbon into RegionSelectPlugin",
+              phase: "green",
+            },
+          ],
+          notes: ["addRibbonIconでリボン追加", "ワンタップで範囲選択操作", "リファクタリング不要"],
+        },
+      ],
+    },
     {
       number: 3,
       pbi_id: "PBI-003",
