@@ -10,4 +10,8 @@ export class MarkManager {
 	getMark(): EditorPosition | null {
 		return this.mark;
 	}
+
+	clearMark(): void {
+		this.mark = null;
+	}
 }

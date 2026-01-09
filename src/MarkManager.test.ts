@@ -30,4 +30,15 @@ describe("MarkManager", () => {
 		manager.setMark(position2);
 		expect(manager.getMark()).toEqual(position2);
 	});
+
+	it("should clear mark position", () => {
+		const manager = new MarkManager();
+		const position: EditorPosition = { line: 5, ch: 10 };
+
+		manager.setMark(position);
+		expect(manager.getMark()).toEqual(position);
+
+		manager.clearMark();
+		expect(manager.getMark()).toBeNull();
+	});
 });
