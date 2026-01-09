@@ -184,6 +184,33 @@ const scrum: ScrumDashboard = {
       ],
       status: "done",
     },
+    {
+      id: "PBI-004",
+      story: {
+        role: "Obsidianモバイルユーザー",
+        capability: "リボンボタン1つでマーク設定と選択を切り替えられる",
+        benefit: "ワンタップで直感的に範囲選択操作ができる",
+      },
+      acceptance_criteria: [
+        {
+          criterion: "リボンボタンタップでマーク未設定時はSet Mark、設定済みはSelect to Markが実行される",
+          verification: "マーク状態に応じて適切なコマンドが呼ばれることを確認",
+        },
+        {
+          criterion: "マーク設定中はリボンアイコンが変化する",
+          verification: "setIcon呼び出しでアイコンが更新されることを確認",
+        },
+        {
+          criterion: "Select to Mark実行後にマークが自動クリアされる",
+          verification: "選択実行後、getMarkがnullを返しアイコンがリセットされることを確認",
+        },
+        {
+          criterion: "ファイル切り替え時にマークが自動クリアされる",
+          verification: "file-openイベントでclearMarkが呼ばれアイコンがリセットされることを確認",
+        },
+      ],
+      status: "draft",
+    },
   ],
 
   sprint: null,
