@@ -25,6 +25,8 @@
 		]
 	},
 	"include": [
-		"src/**/*.ts"
+		"src/**/*.ts",
+		"scrum.ts",
+		"vitest.config.ts"
 	]
 }
