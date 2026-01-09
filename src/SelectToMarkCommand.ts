@@ -14,5 +14,7 @@ export class SelectToMarkCommand {
 			this.showNotice("マークが設定されていません");
 			return;
 		}
+
+		const cursor = editor.getCursor();
 	}
 }

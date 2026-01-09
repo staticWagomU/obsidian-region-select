@@ -36,4 +36,16 @@ describe("SelectToMarkCommand", () => {
 
 		expect(mockShowNotice).toHaveBeenCalledWith("マークが設定されていません");
 	});
+
+	it("should calculate range from mark to current cursor position", () => {
+		const markPosition: EditorPosition = { line: 5, ch: 10 };
+		const cursorPosition: EditorPosition = { line: 10, ch: 20 };
+
+		vi.spyOn(markManager, "getMark").mockReturnValue(markPosition);
+		const getCursorSpy = vi.spyOn(mockEditor, "getCursor").mockReturnValue(cursorPosition);
+
+		selectToMarkCommand.execute(mockEditor);
+
+		expect(getCursorSpy).toHaveBeenCalled();
+	});
 });
