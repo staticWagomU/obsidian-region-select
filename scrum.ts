@@ -263,7 +263,25 @@ const scrum: ScrumDashboard = {
   },
   ],
 
-  retrospectives: [],
+  retrospectives: [
+    {
+      sprint: 1,
+      improvements: [
+        {
+          action: "Lintエラーを修正する（main.ts, settings.tsのサンプルコード削除、未使用パラメータの修正）",
+          timing: "sprint",
+          status: "active",
+          outcome: null,
+        },
+        {
+          action: "tsconfig.jsonにscrum.tsとvitest.config.tsを追加する",
+          timing: "sprint",
+          status: "active",
+          outcome: null,
+        },
+      ],
+    },
+  ],
 };
 
 // JSON output (deno run scrum.ts | jq for queries)
