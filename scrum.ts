@@ -144,7 +144,7 @@ const scrum: ScrumDashboard = {
           verification: "「マーク設定: 行 N, 列 M」形式の通知が表示される",
         },
       ],
-      status: "draft",
+      status: "ready",
     },
     {
       id: "PBI-002",
