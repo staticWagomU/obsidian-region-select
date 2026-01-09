@@ -3,6 +3,7 @@ import { DEFAULT_SETTINGS, RegionSelectSettings, RegionSelectSettingTab } from "
 import { MarkManager } from "./MarkManager";
 import { SetMarkCommand } from "./SetMarkCommand";
 import { SelectToMarkCommand } from "./SelectToMarkCommand";
+import { ClearMarkCommand } from "./ClearMarkCommand";
 
 export default class RegionSelectPlugin extends Plugin {
 	settings: RegionSelectSettings;
@@ -34,6 +35,18 @@ export default class RegionSelectPlugin extends Plugin {
 					(message: string) => new Notice(message)
 				);
 				command.execute(editor);
+			},
+		});
+
+		this.addCommand({
+			id: "clear-mark",
+			name: "Clear mark",
+			callback: () => {
+				const command = new ClearMarkCommand(
+					this.markManager,
+					(message: string) => new Notice(message)
+				);
+				command.execute();
 			},
 		});
 
