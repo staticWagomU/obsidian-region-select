@@ -196,17 +196,29 @@ const scrum: ScrumDashboard = {
         test: "main.tsとsettings.tsのlintエラーがないことを確認する",
         implementation: "サンプルコードと未使用パラメータを削除してlintエラーを修正する",
         type: "structural",
-        status: "pending",
-        commits: [],
-        notes: [],
+        status: "completed",
+        commits: [
+          {
+            hash: "145dad9",
+            message: "refactor: remove sample code and rename classes",
+            phase: "green",
+          },
+        ],
+        notes: ["サンプルコード全削除", "クラス名をRegionSelectPluginに統一", "lint/buildともにパス"],
       },
       {
         test: "tsconfig.jsonがscrum.tsとvitest.config.tsを含むことを確認する",
         implementation: "tsconfig.jsonのinclude配列にscrum.tsとvitest.config.tsを追加する",
         type: "structural",
-        status: "pending",
-        commits: [],
-        notes: [],
+        status: "completed",
+        commits: [
+          {
+            hash: "079daf9",
+            message: "build: include scrum.ts and vitest.config.ts in tsconfig",
+            phase: "green",
+          },
+        ],
+        notes: ["tsconfig.jsonのinclude配列に2ファイル追加", "ESLintのパースエラー解消", "全てのlintエラー解消完了"],
       },
       {
         test: "SelectToMarkCommandがマーク未設定時にnullを扱えることをテストする",
