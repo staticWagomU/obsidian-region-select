@@ -357,6 +357,23 @@ const scrum: ScrumDashboard = {
 
   retrospectives: [
     {
+      sprint: 2,
+      improvements: [
+        {
+          action: "SetMarkCommandとSelectToMarkCommandをmain.tsのRegionSelectPluginに登録する",
+          timing: "sprint",
+          status: "active",
+          outcome: null,
+        },
+        {
+          action: "Obsidian環境での統合テストを追加する（実際のエディタ動作検証）",
+          timing: "product",
+          status: "active",
+          outcome: null,
+        },
+      ],
+    },
+    {
       sprint: 1,
       improvements: [
         {
