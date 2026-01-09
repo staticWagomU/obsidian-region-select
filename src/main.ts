@@ -1,18 +1,47 @@
-import { Notice, Plugin } from "obsidian";
+import { Notice, Plugin, MarkdownView, setIcon } from "obsidian";
 import { DEFAULT_SETTINGS, RegionSelectSettings, RegionSelectSettingTab } from "./settings";
 import { MarkManager } from "./MarkManager";
 import { SetMarkCommand } from "./SetMarkCommand";
 import { SelectToMarkCommand } from "./SelectToMarkCommand";
 import { ClearMarkCommand } from "./ClearMarkCommand";
+import { ToggleMarkRibbon } from "./ToggleMarkRibbon";
 
 export default class RegionSelectPlugin extends Plugin {
 	settings: RegionSelectSettings;
 	private markManager: MarkManager;
+	private ribbonIcon: HTMLElement | null = null;
 
 	async onload() {
 		await this.loadSettings();
 
 		this.markManager = new MarkManager();
+
+		// Add ribbon icon for toggle mark
+		this.ribbonIcon = this.addRibbonIcon("locate", "Toggle mark", () => {
+			const view = this.app.workspace.getActiveViewOfType(MarkdownView);
+			if (view?.editor) {
+				const ribbon = new ToggleMarkRibbon(
+					this.markManager,
+					(message: string) => new Notice(message),
+					(icon: string) => {
+						if (this.ribbonIcon) {
+							setIcon(this.ribbonIcon, icon);
+						}
+					}
+				);
+				ribbon.onClick(view.editor);
+			}
+		});
+
+		// Clear mark and reset icon on file-open
+		this.registerEvent(
+			this.app.workspace.on("file-open", () => {
+				this.markManager.clearMark();
+				if (this.ribbonIcon) {
+					setIcon(this.ribbonIcon, "locate");
+				}
+			})
+		);
 
 		this.addCommand({
 			id: "set-mark",
