@@ -79,6 +79,23 @@ export default class RegionSelectPlugin extends Plugin {
 			},
 		});
 
+		this.addCommand({
+			id: "toggle-mark",
+			name: "Toggle mark",
+			editorCallback: (editor) => {
+				const toggle = new ToggleMarkRibbon(
+					this.markManager,
+					(message: string) => new Notice(message),
+					(icon: string) => {
+						if (this.ribbonIcon) {
+							setIcon(this.ribbonIcon, icon);
+						}
+					}
+				);
+				toggle.onClick(editor);
+			},
+		});
+
 		this.addSettingTab(new RegionSelectSettingTab(this.app, this));
 	}
 
