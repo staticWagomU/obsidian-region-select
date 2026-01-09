@@ -12,4 +12,14 @@ describe("ClearMarkCommand", () => {
 
 		expect(clearMarkSpy).toHaveBeenCalledOnce();
 	});
+
+	it("should display notice when mark is cleared", () => {
+		const markManager = new MarkManager();
+		const showNotice = vi.fn();
+		const command = new ClearMarkCommand(markManager, showNotice);
+
+		command.execute();
+
+		expect(showNotice).toHaveBeenCalledWith("マークを解除しました");
+	});
 });
