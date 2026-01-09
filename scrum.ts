@@ -163,7 +163,7 @@ const scrum: ScrumDashboard = {
           verification: "「マークが設定されていません」通知が表示される",
         },
       ],
-      status: "draft",
+      status: "ready",
     },
     {
       id: "PBI-003",
