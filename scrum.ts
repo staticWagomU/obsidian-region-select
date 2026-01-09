@@ -182,7 +182,7 @@ const scrum: ScrumDashboard = {
           verification: "「マークを解除しました」通知が表示される",
         },
       ],
-      status: "draft",
+      status: "ready",
     },
   ],
 
