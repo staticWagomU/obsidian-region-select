@@ -238,9 +238,15 @@ const scrum: ScrumDashboard = {
         test: "set-markコマンド実行時にNoticeで位置情報が表示されることをテストする",
         implementation: "set-markコマンドでNoticeを表示し、マーク位置（行・列）を通知する",
         type: "behavioral",
-        status: "green",
-        commits: [],
-        notes: ["テスト追加: Notice表示の検証", "依存性注入パターンでshowNotice関数を注入", "Notice機能実装完了"],
+        status: "completed",
+        commits: [
+          {
+            hash: "73f23a8",
+            message: "feat: add Notice display to SetMarkCommand",
+            phase: "green",
+          },
+        ],
+        notes: ["テスト追加: Notice表示の検証", "依存性注入パターンでshowNotice関数を注入", "Notice機能実装完了", "リファクタリング不要: 依存性注入で綺麗に実装済"],
       },
     ],
   },
