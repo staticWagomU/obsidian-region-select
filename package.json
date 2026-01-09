@@ -1,7 +1,7 @@
 {
-	"name": "obsidian-sample-plugin",
+	"name": "obsidian-region-select",
 	"version": "1.0.0",
-	"description": "This is a sample plugin for Obsidian (https://obsidian.md)",
+	"description": "Emacs-inspired mark & point selection for mobile",
 	"main": "main.js",
 	"type": "module",
 	"scripts": {
