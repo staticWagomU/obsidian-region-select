@@ -186,7 +186,62 @@ const scrum: ScrumDashboard = {
     },
   ],
 
-  sprint: null,
+  sprint: {
+    number: 2,
+    pbi_id: "PBI-002",
+    goal: "select-to-markコマンドを実装し、マークから現在位置までのテキスト選択を可能にする。またSprint 1の改善アクションを完了する。",
+    status: "in_progress",
+    subtasks: [
+      {
+        test: "main.tsとsettings.tsのlintエラーがないことを確認する",
+        implementation: "サンプルコードと未使用パラメータを削除してlintエラーを修正する",
+        type: "structural",
+        status: "pending",
+        commits: [],
+        notes: [],
+      },
+      {
+        test: "tsconfig.jsonがscrum.tsとvitest.config.tsを含むことを確認する",
+        implementation: "tsconfig.jsonのinclude配列にscrum.tsとvitest.config.tsを追加する",
+        type: "structural",
+        status: "pending",
+        commits: [],
+        notes: [],
+      },
+      {
+        test: "SelectToMarkCommandがマーク未設定時にnullを扱えることをテストする",
+        implementation: "SelectToMarkCommandクラスを作成し、MarkManager.getMarkがnullを返すケースを処理する",
+        type: "behavioral",
+        status: "pending",
+        commits: [],
+        notes: [],
+      },
+      {
+        test: "SelectToMarkCommandがマーク未設定時にエラー通知を表示することをテストする",
+        implementation: "マークがnullの場合にNoticeで「マークが設定されていません」を表示する",
+        type: "behavioral",
+        status: "pending",
+        commits: [],
+        notes: [],
+      },
+      {
+        test: "SelectToMarkCommandがマークから現在位置までの範囲を計算できることをテストする",
+        implementation: "MarkManagerから取得したマーク位置とEditor.getCursorで取得した現在位置から選択範囲を決定する",
+        type: "behavioral",
+        status: "pending",
+        commits: [],
+        notes: [],
+      },
+      {
+        test: "SelectToMarkCommandがEditor.setSelectionを正しいanchor/headで呼ぶことをテストする",
+        implementation: "計算した範囲でEditor.setSelectionを呼び出し、テキストを選択する",
+        type: "behavioral",
+        status: "pending",
+        commits: [],
+        notes: [],
+      },
+    ],
+  },
 
   definition_of_done: {
     checks: [
