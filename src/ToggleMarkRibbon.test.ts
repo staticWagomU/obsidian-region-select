@@ -18,4 +18,25 @@ describe("ToggleMarkRibbon", () => {
 		expect(manager.hasMark()).toBe(true);
 		expect(manager.getMark()).toEqual({ line: 5, ch: 10 });
 	});
+
+	it("should execute SelectToMarkCommand when mark is set", () => {
+		const manager = new MarkManager();
+		manager.setMark({ line: 5, ch: 10 });
+
+		const mockSetSelection = vi.fn();
+		const mockEditor = {
+			getCursor: vi.fn().mockReturnValue({ line: 10, ch: 20 }),
+			setSelection: mockSetSelection,
+		} as unknown as Editor;
+		const mockShowNotice = vi.fn();
+		const mockSetIcon = vi.fn();
+
+		const ribbon = new ToggleMarkRibbon(manager, mockShowNotice, mockSetIcon);
+		ribbon.onClick(mockEditor);
+
+		expect(mockSetSelection).toHaveBeenCalledWith(
+			{ line: 5, ch: 10 },
+			{ line: 10, ch: 20 }
+		);
+	});
 });

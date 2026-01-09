@@ -1,6 +1,7 @@
 import type { Editor } from "obsidian";
 import { MarkManager } from "./MarkManager";
 import { SetMarkCommand } from "./SetMarkCommand";
+import { SelectToMarkCommand } from "./SelectToMarkCommand";
 
 export class ToggleMarkRibbon {
 	constructor(
@@ -13,6 +14,9 @@ export class ToggleMarkRibbon {
 		if (!this.markManager.hasMark()) {
 			const setMarkCommand = new SetMarkCommand(this.markManager, this.showNotice);
 			setMarkCommand.execute(editor);
+		} else {
+			const selectToMarkCommand = new SelectToMarkCommand(this.markManager, this.showNotice);
+			selectToMarkCommand.execute(editor);
 		}
 	}
 }
