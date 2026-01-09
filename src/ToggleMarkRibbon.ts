@@ -14,9 +14,12 @@ export class ToggleMarkRibbon {
 		if (!this.markManager.hasMark()) {
 			const setMarkCommand = new SetMarkCommand(this.markManager, this.showNotice);
 			setMarkCommand.execute(editor);
+			this.setIcon("target");
 		} else {
 			const selectToMarkCommand = new SelectToMarkCommand(this.markManager, this.showNotice);
 			selectToMarkCommand.execute(editor);
+			this.markManager.clearMark();
+			this.setIcon("locate");
 		}
 	}
 }
