@@ -144,7 +144,7 @@ const scrum: ScrumDashboard = {
           verification: "「マーク設定: 行 N, 列 M」形式の通知が表示される",
         },
       ],
-      status: "ready",
+      status: "done",
     },
     {
       id: "PBI-002",
@@ -186,12 +186,23 @@ const scrum: ScrumDashboard = {
     },
   ],
 
-  sprint: {
-    number: 1,
-    pbi_id: "PBI-001",
-    goal: "set-markコマンドを実装し、カーソル位置をマークとして保存できるようにする",
-    status: "in_progress",
-    subtasks: [
+  sprint: null,
+
+  definition_of_done: {
+    checks: [
+      { name: "Tests pass", run: "pnpm test" },
+      { name: "Type check passes", run: "pnpm run build" },
+      { name: "Lint passes", run: "pnpm run lint" },
+    ],
+  },
+
+  completed: [
+    {
+      number: 1,
+      pbi_id: "PBI-001",
+      goal: "set-markコマンドを実装し、カーソル位置をマークとして保存できるようにする",
+      status: "done",
+      subtasks: [
       {
         test: "MarkManagerがマーク位置を保存できることをテストする",
         implementation: "MarkManagerクラスにsetMark/getMarkメソッドを実装する",
@@ -250,16 +261,7 @@ const scrum: ScrumDashboard = {
       },
     ],
   },
-
-  definition_of_done: {
-    checks: [
-      { name: "Tests pass", run: "pnpm test" },
-      { name: "Type check passes", run: "pnpm run build" },
-      { name: "Lint passes", run: "pnpm run lint" },
-    ],
-  },
-
-  completed: [],
+  ],
 
   retrospectives: [],
 };
