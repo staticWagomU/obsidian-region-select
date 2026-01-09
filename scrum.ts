@@ -186,7 +186,62 @@ const scrum: ScrumDashboard = {
     },
   ],
 
-  sprint: null,
+  sprint: {
+    number: 3,
+    pbi_id: "PBI-003",
+    goal: "clear-markコマンドを実装してマーク解除を可能にし、全てのコマンドをmain.tsに統合して基本機能を完成させる",
+    status: "in_progress",
+    subtasks: [
+      {
+        test: "RegionSelectPluginがSetMarkCommandを登録することをテストする",
+        implementation: "main.tsのRegionSelectPluginにSetMarkCommandをaddCommandで登録する",
+        type: "structural",
+        status: "pending",
+        commits: [],
+        notes: [],
+      },
+      {
+        test: "RegionSelectPluginがSelectToMarkCommandを登録することをテストする",
+        implementation: "main.tsのRegionSelectPluginにSelectToMarkCommandをaddCommandで登録する",
+        type: "structural",
+        status: "pending",
+        commits: [],
+        notes: [],
+      },
+      {
+        test: "MarkManager.clearMarkがマークをクリアできることをテストする",
+        implementation: "MarkManagerクラスにclearMarkメソッドを実装し、内部状態をnullにする",
+        type: "behavioral",
+        status: "pending",
+        commits: [],
+        notes: [],
+      },
+      {
+        test: "ClearMarkCommandがMarkManager.clearMarkを呼ぶことをテストする",
+        implementation: "ClearMarkCommandクラスを作成し、executeメソッドでMarkManager.clearMarkを呼び出す",
+        type: "behavioral",
+        status: "pending",
+        commits: [],
+        notes: [],
+      },
+      {
+        test: "ClearMarkCommandがマーク解除時にNoticeを表示することをテストする",
+        implementation: "マーク解除後にNoticeで「マークを解除しました」を表示する",
+        type: "behavioral",
+        status: "pending",
+        commits: [],
+        notes: [],
+      },
+      {
+        test: "RegionSelectPluginがClearMarkCommandを登録することをテストする",
+        implementation: "main.tsのRegionSelectPluginにClearMarkCommandをaddCommandで登録する",
+        type: "structural",
+        status: "pending",
+        commits: [],
+        notes: [],
+      },
+    ],
+  },
 
   definition_of_done: {
     checks: [
