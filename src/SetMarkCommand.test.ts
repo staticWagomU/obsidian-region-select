@@ -7,11 +7,11 @@ describe("SetMarkCommand", () => {
 	let mockEditor: Editor;
 	let markManager: MarkManager;
 	let setMarkCommand: SetMarkCommand;
-	let mockShowNotice: ReturnType<typeof vi.fn>;
+	let mockShowNotice: (message: string) => void;
 
 	beforeEach(() => {
 		markManager = new MarkManager();
-		mockShowNotice = vi.fn();
+		mockShowNotice = vi.fn() as (message: string) => void;
 		setMarkCommand = new SetMarkCommand(markManager, mockShowNotice);
 
 		// Mock Editor
@@ -22,12 +22,12 @@ describe("SetMarkCommand", () => {
 
 	it("should call MarkManager.setMark with current cursor position", () => {
 		const cursorPosition: EditorPosition = { line: 10, ch: 5 };
-		vi.spyOn(mockEditor, "getCursor").mockReturnValue(cursorPosition);
+		const getCursorSpy = vi.spyOn(mockEditor, "getCursor").mockReturnValue(cursorPosition);
 		const setMarkSpy = vi.spyOn(markManager, "setMark");
 
 		setMarkCommand.execute(mockEditor);
 
-		expect(mockEditor.getCursor).toHaveBeenCalled();
+		expect(getCursorSpy).toHaveBeenCalled();
 		expect(setMarkSpy).toHaveBeenCalledWith(cursorPosition);
 	});
 
