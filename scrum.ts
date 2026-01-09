@@ -163,7 +163,7 @@ const scrum: ScrumDashboard = {
           verification: "「マークが設定されていません」通知が表示される",
         },
       ],
-      status: "ready",
+      status: "done",
     },
     {
       id: "PBI-003",
@@ -186,74 +186,7 @@ const scrum: ScrumDashboard = {
     },
   ],
 
-  sprint: {
-    number: 2,
-    pbi_id: "PBI-002",
-    goal: "select-to-markコマンドを実装し、マークから現在位置までのテキスト選択を可能にする。またSprint 1の改善アクションを完了する。",
-    status: "in_progress",
-    subtasks: [
-      {
-        test: "main.tsとsettings.tsのlintエラーがないことを確認する",
-        implementation: "サンプルコードと未使用パラメータを削除してlintエラーを修正する",
-        type: "structural",
-        status: "completed",
-        commits: [
-          {
-            hash: "145dad9",
-            message: "refactor: remove sample code and rename classes",
-            phase: "green",
-          },
-        ],
-        notes: ["サンプルコード全削除", "クラス名をRegionSelectPluginに統一", "lint/buildともにパス"],
-      },
-      {
-        test: "tsconfig.jsonがscrum.tsとvitest.config.tsを含むことを確認する",
-        implementation: "tsconfig.jsonのinclude配列にscrum.tsとvitest.config.tsを追加する",
-        type: "structural",
-        status: "completed",
-        commits: [
-          {
-            hash: "079daf9",
-            message: "build: include scrum.ts and vitest.config.ts in tsconfig",
-            phase: "green",
-          },
-        ],
-        notes: ["tsconfig.jsonのinclude配列に2ファイル追加", "ESLintのパースエラー解消", "全てのlintエラー解消完了"],
-      },
-      {
-        test: "SelectToMarkCommandがマーク未設定時にnullを扱えることをテストする",
-        implementation: "SelectToMarkCommandクラスを作成し、MarkManager.getMarkがnullを返すケースを処理する",
-        type: "behavioral",
-        status: "pending",
-        commits: [],
-        notes: [],
-      },
-      {
-        test: "SelectToMarkCommandがマーク未設定時にエラー通知を表示することをテストする",
-        implementation: "マークがnullの場合にNoticeで「マークが設定されていません」を表示する",
-        type: "behavioral",
-        status: "pending",
-        commits: [],
-        notes: [],
-      },
-      {
-        test: "SelectToMarkCommandがマークから現在位置までの範囲を計算できることをテストする",
-        implementation: "MarkManagerから取得したマーク位置とEditor.getCursorで取得した現在位置から選択範囲を決定する",
-        type: "behavioral",
-        status: "pending",
-        commits: [],
-        notes: [],
-      },
-      {
-        test: "SelectToMarkCommandがEditor.setSelectionを正しいanchor/headで呼ぶことをテストする",
-        implementation: "計算した範囲でEditor.setSelectionを呼び出し、テキストを選択する",
-        type: "behavioral",
-        status: "pending",
-        commits: [],
-        notes: [],
-      },
-    ],
-  },
+  sprint: null,
 
   definition_of_done: {
     checks: [
@@ -264,6 +197,98 @@ const scrum: ScrumDashboard = {
   },
 
   completed: [
+    {
+      number: 2,
+      pbi_id: "PBI-002",
+      goal: "select-to-markコマンドを実装し、マークから現在位置までのテキスト選択を可能にする。またSprint 1の改善アクションを完了する。",
+      status: "done",
+      subtasks: [
+        {
+          test: "main.tsとsettings.tsのlintエラーがないことを確認する",
+          implementation: "サンプルコードと未使用パラメータを削除してlintエラーを修正する",
+          type: "structural",
+          status: "completed",
+          commits: [
+            {
+              hash: "145dad9",
+              message: "refactor: remove sample code and rename classes",
+              phase: "green",
+            },
+          ],
+          notes: ["サンプルコード全削除", "クラス名をRegionSelectPluginに統一", "lint/buildともにパス"],
+        },
+        {
+          test: "tsconfig.jsonがscrum.tsとvitest.config.tsを含むことを確認する",
+          implementation: "tsconfig.jsonのinclude配列にscrum.tsとvitest.config.tsを追加する",
+          type: "structural",
+          status: "completed",
+          commits: [
+            {
+              hash: "079daf9",
+              message: "build: include scrum.ts and vitest.config.ts in tsconfig",
+              phase: "green",
+            },
+          ],
+          notes: ["tsconfig.jsonのinclude配列に2ファイル追加", "ESLintのパースエラー解消", "全てのlintエラー解消完了"],
+        },
+        {
+          test: "SelectToMarkCommandがマーク未設定時にnullを扱えることをテストする",
+          implementation: "SelectToMarkCommandクラスを作成し、MarkManager.getMarkがnullを返すケースを処理する",
+          type: "behavioral",
+          status: "completed",
+          commits: [
+            {
+              hash: "7b9fedd",
+              message: "feat: implement SelectToMarkCommand with null handling",
+              phase: "green",
+            },
+          ],
+          notes: ["SelectToMarkCommandクラス作成", "依存性注入パターン適用", "null処理テスト追加・実装"],
+        },
+        {
+          test: "SelectToMarkCommandがマーク未設定時にエラー通知を表示することをテストする",
+          implementation: "マークがnullの場合にNoticeで「マークが設定されていません」を表示する",
+          type: "behavioral",
+          status: "completed",
+          commits: [
+            {
+              hash: "fb8d1d9",
+              message: "feat: add error notice when mark is not set",
+              phase: "green",
+            },
+          ],
+          notes: ["エラー通知テスト追加", "showNotice呼び出し実装", "正しいメッセージ確認"],
+        },
+        {
+          test: "SelectToMarkCommandがマークから現在位置までの範囲を計算できることをテストする",
+          implementation: "MarkManagerから取得したマーク位置とEditor.getCursorで取得した現在位置から選択範囲を決定する",
+          type: "behavioral",
+          status: "completed",
+          commits: [
+            {
+              hash: "4eb4894",
+              message: "feat: add range calculation from mark to cursor",
+              phase: "green",
+            },
+          ],
+          notes: ["範囲計算テスト追加", "getCursor呼び出し実装", "両位置取得確認"],
+        },
+        {
+          test: "SelectToMarkCommandがEditor.setSelectionを正しいanchor/headで呼ぶことをテストする",
+          implementation: "計算した範囲でEditor.setSelectionを呼び出し、テキストを選択する",
+          type: "behavioral",
+          status: "completed",
+          commits: [
+            {
+              hash: "fd4671d",
+              message: "feat: implement text selection with Editor.setSelection",
+              phase: "green",
+            },
+          ],
+          notes: ["setSelectionテスト追加", "mark=anchor, cursor=head実装", "SelectToMarkCommand完成"],
+        },
+      ],
+    },
     {
       number: 1,
       pbi_id: "PBI-001",
@@ -337,14 +362,14 @@ const scrum: ScrumDashboard = {
         {
           action: "Lintエラーを修正する（main.ts, settings.tsのサンプルコード削除、未使用パラメータの修正）",
           timing: "sprint",
-          status: "active",
-          outcome: null,
+          status: "completed",
+          outcome: "Sprint 2で完了。サンプルコード全削除、クラス名統一により全てのlintエラー解消。",
         },
         {
           action: "tsconfig.jsonにscrum.tsとvitest.config.tsを追加する",
           timing: "sprint",
-          status: "active",
-          outcome: null,
+          status: "completed",
+          outcome: "Sprint 2で完了。tsconfig.jsonのinclude配列に追加し、ESLintパースエラー解消。",
         },
       ],
     },
