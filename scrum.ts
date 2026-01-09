@@ -449,6 +449,23 @@ const scrum: ScrumDashboard = {
 
   retrospectives: [
     {
+      sprint: 3,
+      improvements: [
+        {
+          action: "Obsidian環境での統合テストを追加する（実際のエディタ動作検証）",
+          timing: "product",
+          status: "active",
+          outcome: null,
+        },
+        {
+          action: "ユーザードキュメントを作成する（README更新、コマンド使用方法の説明、モバイルでの利用シナリオの記載）",
+          timing: "product",
+          status: "active",
+          outcome: null,
+        },
+      ],
+    },
+    {
       sprint: 2,
       improvements: [
         {
