@@ -223,7 +223,7 @@ const scrum: ScrumDashboard = {
         test: "MarkManagerがマーク状態を判定できることをテストする",
         implementation: "MarkManagerにhasMarkメソッドを実装し、マークの有無をbooleanで返す",
         type: "behavioral",
-        status: "pending",
+        status: "green",
         commits: [],
         notes: [],
       },

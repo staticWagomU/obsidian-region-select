@@ -41,4 +41,29 @@ describe("MarkManager", () => {
 		manager.clearMark();
 		expect(manager.getMark()).toBeNull();
 	});
+
+	it("should return false when no mark is set", () => {
+		const manager = new MarkManager();
+
+		expect(manager.hasMark()).toBe(false);
+	});
+
+	it("should return true when mark is set", () => {
+		const manager = new MarkManager();
+		const position: EditorPosition = { line: 5, ch: 10 };
+
+		manager.setMark(position);
+
+		expect(manager.hasMark()).toBe(true);
+	});
+
+	it("should return false after clearing mark", () => {
+		const manager = new MarkManager();
+		const position: EditorPosition = { line: 5, ch: 10 };
+
+		manager.setMark(position);
+		manager.clearMark();
+
+		expect(manager.hasMark()).toBe(false);
+	});
 });

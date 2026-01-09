@@ -14,4 +14,8 @@ export class MarkManager {
 	clearMark(): void {
 		this.mark = null;
 	}
+
+	hasMark(): boolean {
+		return this.mark !== null;
+	}
 }
