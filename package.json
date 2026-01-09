@@ -12,7 +12,9 @@
 		"lint:oxlint": "oxlint",
 		"lint:eslint": "eslint .",
 		"format": "oxfmt --write src/",
-		"format:check": "oxfmt src/"
+		"format:check": "oxfmt src/",
+		"test": "vitest",
+		"test:run": "vitest run"
 	},
 	"keywords": [],
 	"license": "0-BSD",
@@ -27,12 +29,15 @@
 		"oxlint": "^1.38.0",
 		"tslib": "2.4.0",
 		"typescript": "^5.8.3",
-		"typescript-eslint": "8.35.1"
+		"typescript-eslint": "8.35.1",
+		"vitest": "^4.0.16"
 	},
 	"dependencies": {
 		"obsidian": "latest"
 	},
 	"pnpm": {
-		"onlyBuiltDependencies": ["esbuild"]
+		"onlyBuiltDependencies": [
+			"esbuild"
+		]
 	}
 }
