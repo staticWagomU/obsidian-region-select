@@ -1,0 +1,17 @@
+import type { Editor } from "obsidian";
+import { MarkManager } from "./MarkManager";
+
+export class SelectToMarkCommand {
+	constructor(
+		private markManager: MarkManager,
+		private showNotice: (message: string) => void = () => {},
+	) {}
+
+	execute(editor: Editor): void {
+		const mark = this.markManager.getMark();
+		
+		if (mark === null) {
+			return;
+		}
+	}
+}
