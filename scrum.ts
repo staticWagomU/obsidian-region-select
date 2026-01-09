@@ -182,66 +182,11 @@ const scrum: ScrumDashboard = {
           verification: "「マークを解除しました」通知が表示される",
         },
       ],
-      status: "ready",
+      status: "done",
     },
   ],
 
-  sprint: {
-    number: 3,
-    pbi_id: "PBI-003",
-    goal: "clear-markコマンドを実装してマーク解除を可能にし、全てのコマンドをmain.tsに統合して基本機能を完成させる",
-    status: "in_progress",
-    subtasks: [
-      {
-        test: "RegionSelectPluginがSetMarkCommandを登録することをテストする",
-        implementation: "main.tsのRegionSelectPluginにSetMarkCommandをaddCommandで登録する",
-        type: "structural",
-        status: "pending",
-        commits: [],
-        notes: [],
-      },
-      {
-        test: "RegionSelectPluginがSelectToMarkCommandを登録することをテストする",
-        implementation: "main.tsのRegionSelectPluginにSelectToMarkCommandをaddCommandで登録する",
-        type: "structural",
-        status: "pending",
-        commits: [],
-        notes: [],
-      },
-      {
-        test: "MarkManager.clearMarkがマークをクリアできることをテストする",
-        implementation: "MarkManagerクラスにclearMarkメソッドを実装し、内部状態をnullにする",
-        type: "behavioral",
-        status: "pending",
-        commits: [],
-        notes: [],
-      },
-      {
-        test: "ClearMarkCommandがMarkManager.clearMarkを呼ぶことをテストする",
-        implementation: "ClearMarkCommandクラスを作成し、executeメソッドでMarkManager.clearMarkを呼び出す",
-        type: "behavioral",
-        status: "pending",
-        commits: [],
-        notes: [],
-      },
-      {
-        test: "ClearMarkCommandがマーク解除時にNoticeを表示することをテストする",
-        implementation: "マーク解除後にNoticeで「マークを解除しました」を表示する",
-        type: "behavioral",
-        status: "pending",
-        commits: [],
-        notes: [],
-      },
-      {
-        test: "RegionSelectPluginがClearMarkCommandを登録することをテストする",
-        implementation: "main.tsのRegionSelectPluginにClearMarkCommandをaddCommandで登録する",
-        type: "structural",
-        status: "pending",
-        commits: [],
-        notes: [],
-      },
-    ],
-  },
+  sprint: null,
 
   definition_of_done: {
     checks: [
@@ -252,6 +197,98 @@ const scrum: ScrumDashboard = {
   },
 
   completed: [
+    {
+      number: 3,
+      pbi_id: "PBI-003",
+      goal: "clear-markコマンドを実装してマーク解除を可能にし、全てのコマンドをmain.tsに統合して基本機能を完成させる",
+      status: "done",
+      subtasks: [
+        {
+          test: "RegionSelectPluginがSetMarkCommandを登録することをテストする",
+          implementation: "main.tsのRegionSelectPluginにSetMarkCommandをaddCommandで登録する",
+          type: "structural",
+          status: "completed",
+          commits: [
+            {
+              hash: "490aeed",
+              message: "feat: register SetMarkCommand in RegionSelectPlugin",
+              phase: "green",
+            },
+          ],
+          notes: ["MarkManagerシングルトン追加", "addCommandでset-mark登録", "Notice依存性注入"],
+        },
+        {
+          test: "RegionSelectPluginがSelectToMarkCommandを登録することをテストする",
+          implementation: "main.tsのRegionSelectPluginにSelectToMarkCommandをaddCommandで登録する",
+          type: "structural",
+          status: "completed",
+          commits: [
+            {
+              hash: "76a893c",
+              message: "feat: register SelectToMarkCommand in RegionSelectPlugin",
+              phase: "green",
+            },
+          ],
+          notes: ["addCommandでselect-to-mark登録", "MarkManager共有", "Notice依存性注入"],
+        },
+        {
+          test: "MarkManager.clearMarkがマークをクリアできることをテストする",
+          implementation: "MarkManagerクラスにclearMarkメソッドを実装し、内部状態をnullにする",
+          type: "behavioral",
+          status: "completed",
+          commits: [
+            {
+              hash: "648bcc1",
+              message: "feat: implement MarkManager.clearMark() method",
+              phase: "green",
+            },
+          ],
+          notes: ["clearMark()メソッド追加", "内部状態をnullに設定", "RED→GREENサイクル完了"],
+        },
+        {
+          test: "ClearMarkCommandがMarkManager.clearMarkを呼ぶことをテストする",
+          implementation: "ClearMarkCommandクラスを作成し、executeメソッドでMarkManager.clearMarkを呼び出す",
+          type: "behavioral",
+          status: "completed",
+          commits: [
+            {
+              hash: "64197ae",
+              message: "feat: implement ClearMarkCommand class",
+              phase: "green",
+            },
+          ],
+          notes: ["ClearMarkCommandクラス作成", "executeでclearMark呼び出し", "RED→GREENサイクル完了"],
+        },
+        {
+          test: "ClearMarkCommandがマーク解除時にNoticeを表示することをテストする",
+          implementation: "マーク解除後にNoticeで「マークを解除しました」を表示する",
+          type: "behavioral",
+          status: "completed",
+          commits: [
+            {
+              hash: "8fe0cd7",
+              message: "feat: add Notice display to ClearMarkCommand",
+              phase: "green",
+            },
+          ],
+          notes: ["showNotice依存性注入", "マーク解除通知実装", "RED→GREENサイクル完了"],
+        },
+        {
+          test: "RegionSelectPluginがClearMarkCommandを登録することをテストする",
+          implementation: "main.tsのRegionSelectPluginにClearMarkCommandをaddCommandで登録する",
+          type: "structural",
+          status: "completed",
+          commits: [
+            {
+              hash: "589bb1b",
+              message: "feat: register ClearMarkCommand in RegionSelectPlugin",
+              phase: "green",
+            },
+          ],
+          notes: ["addCommandでclear-mark登録", "callbackを使用", "全3コマンド統合完了"],
+        },
+      ],
+    },
     {
       number: 2,
       pbi_id: "PBI-002",
@@ -417,8 +454,8 @@ const scrum: ScrumDashboard = {
         {
           action: "SetMarkCommandとSelectToMarkCommandをmain.tsのRegionSelectPluginに登録する",
           timing: "sprint",
-          status: "active",
-          outcome: null,
+          status: "completed",
+          outcome: "Sprint 3で完了。全3コマンド（set-mark, select-to-mark, clear-mark）をmain.tsに統合し、MarkManagerをシングルトンとして共有する構成を実現。",
         },
         {
           action: "Obsidian環境での統合テストを追加する（実際のエディタ動作検証）",
