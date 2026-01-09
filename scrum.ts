@@ -209,7 +209,7 @@ const scrum: ScrumDashboard = {
           verification: "file-openイベントでclearMarkが呼ばれアイコンがリセットされることを確認",
         },
       ],
-      status: "draft",
+      status: "ready",
     },
   ],
 
