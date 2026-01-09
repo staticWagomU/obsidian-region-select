@@ -7,10 +7,12 @@ describe("SetMarkCommand", () => {
 	let mockEditor: Editor;
 	let markManager: MarkManager;
 	let setMarkCommand: SetMarkCommand;
+	let mockShowNotice: ReturnType<typeof vi.fn>;
 
 	beforeEach(() => {
 		markManager = new MarkManager();
-		setMarkCommand = new SetMarkCommand(markManager);
+		mockShowNotice = vi.fn();
+		setMarkCommand = new SetMarkCommand(markManager, mockShowNotice);
 
 		// Mock Editor
 		mockEditor = {
@@ -27,5 +29,14 @@ describe("SetMarkCommand", () => {
 
 		expect(mockEditor.getCursor).toHaveBeenCalled();
 		expect(setMarkSpy).toHaveBeenCalledWith(cursorPosition);
+	});
+
+	it("should display Notice with mark position when mark is set", () => {
+		const cursorPosition: EditorPosition = { line: 10, ch: 5 };
+		vi.spyOn(mockEditor, "getCursor").mockReturnValue(cursorPosition);
+
+		setMarkCommand.execute(mockEditor);
+
+		expect(mockShowNotice).toHaveBeenCalledWith("マーク設定: 行 10, 列 5");
 	});
 });
