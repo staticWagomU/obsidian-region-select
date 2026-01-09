@@ -210,9 +210,15 @@ const scrum: ScrumDashboard = {
         test: "MarkManagerがマーク位置を取得できることをテストする",
         implementation: "getMarkがsetMarkで保存した位置を正確に返すことを確認する",
         type: "behavioral",
-        status: "pending",
-        commits: [],
-        notes: [],
+        status: "completed",
+        commits: [
+          {
+            hash: "e10dfc5",
+            message: "feat: implement MarkManager with setMark/getMark methods",
+            phase: "green",
+          },
+        ],
+        notes: ["テストケース追加: 初期状態でnull、複数回の設定で正しく更新", "既存実装で全テストパス"],
       },
       {
         test: "set-markコマンドが現在のカーソル位置でMarkManager.setMarkを呼ぶことをテストする",
