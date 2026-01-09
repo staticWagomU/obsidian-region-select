@@ -16,5 +16,6 @@ export class SelectToMarkCommand {
 		}
 
 		const cursor = editor.getCursor();
+		editor.setSelection(mark, cursor);
 	}
 }

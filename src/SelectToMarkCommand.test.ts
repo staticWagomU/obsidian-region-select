@@ -48,4 +48,17 @@ describe("SelectToMarkCommand", () => {
 
 		expect(getCursorSpy).toHaveBeenCalled();
 	});
+
+	it("should call Editor.setSelection with mark as anchor and cursor as head", () => {
+		const markPosition: EditorPosition = { line: 5, ch: 10 };
+		const cursorPosition: EditorPosition = { line: 10, ch: 20 };
+
+		vi.spyOn(markManager, "getMark").mockReturnValue(markPosition);
+		vi.spyOn(mockEditor, "getCursor").mockReturnValue(cursorPosition);
+		const setSelectionSpy = vi.spyOn(mockEditor, "setSelection");
+
+		selectToMarkCommand.execute(mockEditor);
+
+		expect(setSelectionSpy).toHaveBeenCalledWith(markPosition, cursorPosition);
+	});
 });
