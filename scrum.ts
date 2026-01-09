@@ -196,9 +196,15 @@ const scrum: ScrumDashboard = {
         test: "MarkManagerがマーク位置を保存できることをテストする",
         implementation: "MarkManagerクラスにsetMark/getMarkメソッドを実装する",
         type: "behavioral",
-        status: "green",
-        commits: [],
-        notes: ["テストファイル作成: src/MarkManager.test.ts", "最小限の実装でテストパス"],
+        status: "completed",
+        commits: [
+          {
+            hash: "e10dfc5",
+            message: "feat: implement MarkManager with setMark/getMark methods",
+            phase: "green",
+          },
+        ],
+        notes: ["テストファイル作成: src/MarkManager.test.ts", "最小限の実装でテストパス", "リファクタリング不要: コードは既にシンプルで明確"],
       },
       {
         test: "MarkManagerがマーク位置を取得できることをテストする",
