@@ -186,7 +186,46 @@ const scrum: ScrumDashboard = {
     },
   ],
 
-  sprint: null,
+  sprint: {
+    number: 1,
+    pbi_id: "PBI-001",
+    goal: "set-markコマンドを実装し、カーソル位置をマークとして保存できるようにする",
+    status: "in_progress",
+    subtasks: [
+      {
+        test: "MarkManagerがマーク位置を保存できることをテストする",
+        implementation: "MarkManagerクラスにsetMark/getMarkメソッドを実装する",
+        type: "behavioral",
+        status: "pending",
+        commits: [],
+        notes: [],
+      },
+      {
+        test: "MarkManagerがマーク位置を取得できることをテストする",
+        implementation: "getMarkがsetMarkで保存した位置を正確に返すことを確認する",
+        type: "behavioral",
+        status: "pending",
+        commits: [],
+        notes: [],
+      },
+      {
+        test: "set-markコマンドが現在のカーソル位置でMarkManager.setMarkを呼ぶことをテストする",
+        implementation: "set-markコマンドを実装し、Editor.getCursorで取得した位置をMarkManagerに保存する",
+        type: "behavioral",
+        status: "pending",
+        commits: [],
+        notes: [],
+      },
+      {
+        test: "set-markコマンド実行時にNoticeで位置情報が表示されることをテストする",
+        implementation: "set-markコマンドでNoticeを表示し、マーク位置（行・列）を通知する",
+        type: "behavioral",
+        status: "pending",
+        commits: [],
+        notes: [],
+      },
+    ],
+  },
 
   definition_of_done: {
     checks: [
