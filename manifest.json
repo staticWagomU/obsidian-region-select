@@ -1,7 +1,7 @@
 {
 	"id": "region-select",
 	"name": "Region Select",
-	"version": "1.0.0",
+	"version": "1.6.0",
 	"minAppVersion": "0.15.0",
 	"description": "Emacs-inspired mark & point selection for mobile. Set mark at start position, move cursor, then select to mark.",
 	"author": "wagomu",
