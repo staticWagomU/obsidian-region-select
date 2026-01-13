@@ -221,22 +221,26 @@ const scrum: ScrumDashboard = {
       acceptance_criteria: [
         {
           criterion: "マーク設定時にエディタ上でマーク位置が視覚的に表示される",
-          verification: "set-mark実行後、マーク位置にハイライトやマーカーが表示されることを確認",
+          verification: "set-mark実行後、EditorPositionにDecoration.widgetでマーカーが表示されることを確認",
         },
         {
           criterion: "マーク解除時に視覚的表示が消える",
-          verification: "clear-mark実行後、マーカー表示が削除されることを確認",
+          verification: "clear-mark実行後、DecorationSetからマーカーが削除されることを確認",
         },
         {
           criterion: "ファイル切り替え時に視覚的表示が消える",
-          verification: "file-openイベント発火後、マーカー表示が削除されることを確認",
+          verification: "file-openイベント発火後、DecorationSetからマーカーが削除されることを確認",
         },
         {
           criterion: "Select to Mark実行後に視覚的表示が消える",
-          verification: "選択実行後、マーカー表示が削除されることを確認",
+          verification: "選択実行後、DecorationSetからマーカーが削除されることを確認",
+        },
+        {
+          criterion: "マーカーはモバイルでも視認性が高いデザインである",
+          verification: "モバイル環境で視覚的マーカーが明確に見えることを手動確認",
         },
       ],
-      status: "draft",
+      status: "ready",
     },
     {
       id: "PBI-006",
