@@ -46,6 +46,7 @@ export default class RegionSelectPlugin extends Plugin {
 		this.addCommand({
 			id: "set-mark",
 			name: "Set mark at cursor",
+			icon: "map-pin",
 			editorCallback: (editor) => {
 				const command = new SetMarkCommand(
 					this.markManager,
@@ -58,6 +59,7 @@ export default class RegionSelectPlugin extends Plugin {
 		this.addCommand({
 			id: "select-to-mark",
 			name: "Select from mark to cursor",
+			icon: "text-select",
 			editorCallback: (editor) => {
 				const command = new SelectToMarkCommand(
 					this.markManager,
@@ -70,6 +72,7 @@ export default class RegionSelectPlugin extends Plugin {
 		this.addCommand({
 			id: "clear-mark",
 			name: "Clear mark",
+			icon: "x",
 			callback: () => {
 				const command = new ClearMarkCommand(
 					this.markManager,
@@ -82,6 +85,7 @@ export default class RegionSelectPlugin extends Plugin {
 		this.addCommand({
 			id: "toggle-mark",
 			name: "Toggle mark",
+			icon: "locate",
 			editorCallback: (editor) => {
 				const toggle = new ToggleMarkRibbon(
 					this.markManager,
