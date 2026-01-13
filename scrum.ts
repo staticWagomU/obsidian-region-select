@@ -238,6 +238,37 @@ const scrum: ScrumDashboard = {
       ],
       status: "draft",
     },
+    {
+      id: "PBI-006",
+      story: {
+        role: "Obsidianモバイルユーザー",
+        capability: "設定画面でマーク位置の視覚表示のon/offを切り替えられる",
+        benefit: "視覚表示が不要な場合はオフにして、好みに合わせた操作ができる",
+      },
+      acceptance_criteria: [
+        {
+          criterion: "プラグイン設定画面に視覚表示のトグル設定が存在する",
+          verification: "設定タブにトグルスイッチが表示されることを確認",
+        },
+        {
+          criterion: "設定がオフの場合、マーク設定時に視覚表示が行われない",
+          verification: "設定オフ時にset-mark実行してもマーカーが表示されないことを確認",
+        },
+        {
+          criterion: "設定がオンの場合、マーク設定時に視覚表示が行われる",
+          verification: "設定オン時にset-mark実行するとマーカーが表示されることを確認",
+        },
+        {
+          criterion: "設定変更は即座に反映される（プラグイン再起動不要）",
+          verification: "設定変更後、次のset-markで新しい設定が反映されることを確認",
+        },
+        {
+          criterion: "設定値は永続化される",
+          verification: "Obsidian再起動後も設定値が保持されていることを確認",
+        },
+      ],
+      status: "draft",
+    },
   ],
 
   sprint: null,
