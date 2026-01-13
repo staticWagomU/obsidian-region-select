@@ -211,6 +211,33 @@ const scrum: ScrumDashboard = {
       ],
       status: "done",
     },
+    {
+      id: "PBI-005",
+      story: {
+        role: "Obsidianモバイルユーザー",
+        capability: "マークを設定した位置がエディタ上で視覚的に確認できる",
+        benefit: "選択範囲の始点がどこか一目で分かり、操作ミスを防げる",
+      },
+      acceptance_criteria: [
+        {
+          criterion: "マーク設定時にエディタ上でマーク位置が視覚的に表示される",
+          verification: "set-mark実行後、マーク位置にハイライトやマーカーが表示されることを確認",
+        },
+        {
+          criterion: "マーク解除時に視覚的表示が消える",
+          verification: "clear-mark実行後、マーカー表示が削除されることを確認",
+        },
+        {
+          criterion: "ファイル切り替え時に視覚的表示が消える",
+          verification: "file-openイベント発火後、マーカー表示が削除されることを確認",
+        },
+        {
+          criterion: "Select to Mark実行後に視覚的表示が消える",
+          verification: "選択実行後、マーカー表示が削除されることを確認",
+        },
+      ],
+      status: "draft",
+    },
   ],
 
   sprint: null,
