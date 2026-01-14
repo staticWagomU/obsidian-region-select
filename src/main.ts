@@ -45,6 +45,7 @@ export default class RegionSelectPlugin extends Plugin {
 	markManager: MarkManager;
 	private ribbonIcon: HTMLElement | null = null;
 	private markViewPlugin = createMarkViewPlugin();
+	private markedEditorView: EditorView | null = null;
 
 	async onload() {
 		await this.loadSettings();
@@ -56,11 +57,21 @@ export default class RegionSelectPlugin extends Plugin {
 
 		// Connect MarkManager events to ViewPlugin updates
 		this.markManager.onMarkChanged((position) => {
-			const view = this.app.workspace.getActiveViewOfType(MarkdownView);
-			if (view?.editor) {
-				const editorView = getEditorView(view.editor);
-				if (editorView) {
-					updateMarkDecoration(editorView, this.markViewPlugin, position, this.settings.showVisualIndicator);
+			if (position) {
+				// Setting a mark: use current active editor and remember it
+				const view = this.app.workspace.getActiveViewOfType(MarkdownView);
+				if (view?.editor) {
+					const editorView = getEditorView(view.editor);
+					if (editorView) {
+						this.markedEditorView = editorView;
+						updateMarkDecoration(editorView, this.markViewPlugin, position, this.settings.showVisualIndicator);
+					}
+				}
+			} else {
+				// Clearing a mark: use the remembered editor where mark was set
+				if (this.markedEditorView) {
+					updateMarkDecoration(this.markedEditorView, this.markViewPlugin, null, this.settings.showVisualIndicator);
+					this.markedEditorView = null;
 				}
 			}
 		});
@@ -82,23 +93,10 @@ export default class RegionSelectPlugin extends Plugin {
 			}
 		});
 
-		// Clear mark decoration on file change using active-leaf-change
-		// This fires BEFORE the new file is loaded, so we can clear the old editor's decoration
+		// Clear mark on file/leaf change
+		// clearMark() will use the remembered markedEditorView to clear decoration
 		this.registerEvent(
 			this.app.workspace.on("active-leaf-change", () => {
-				// Clear decoration from current editor before switching
-				const view = this.app.workspace.getActiveViewOfType(MarkdownView);
-				if (view?.editor) {
-					const editorView = getEditorView(view.editor);
-					if (editorView) {
-						const plugin = editorView.plugin(this.markViewPlugin);
-						if (plugin) {
-							plugin.clearMark();
-							editorView.update([]);
-						}
-					}
-				}
-				// Clear mark state and reset icon
 				this.markManager.clearMark();
 				if (this.ribbonIcon) {
 					setIcon(this.ribbonIcon, "locate");
