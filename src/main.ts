@@ -26,14 +26,15 @@ function getEditorView(editor: Editor): EditorView | null {
 function updateMarkDecoration(
 	editorView: EditorView,
 	markViewPlugin: ReturnType<typeof createMarkViewPlugin>,
-	position: EditorPosition | null
+	position: EditorPosition | null,
+	showVisualIndicator: boolean = true
 ): void {
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
 	const plugin = editorView.plugin(markViewPlugin);
 	if (plugin) {
 		if (position) {
 			// eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
-			plugin.setMark(position, editorView);
+			plugin.setMark(position, editorView, showVisualIndicator);
 		} else {
 			// eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
 			plugin.clearMark();
@@ -63,7 +64,7 @@ export default class RegionSelectPlugin extends Plugin {
 			if (view?.editor) {
 				const editorView = getEditorView(view.editor);
 				if (editorView) {
-					updateMarkDecoration(editorView, this.markViewPlugin, position);
+					updateMarkDecoration(editorView, this.markViewPlugin, position, this.settings.showVisualIndicator);
 				}
 			}
 		});

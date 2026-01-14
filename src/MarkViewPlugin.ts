@@ -32,9 +32,9 @@ class MarkViewPluginValue {
 		// 3. Update this.decorations accordingly
 	}
 
-	setMark(position: EditorPosition, view: EditorView) {
+	setMark(position: EditorPosition, view: EditorView, showVisualIndicator: boolean = true) {
 		this.currentMark = position;
-		this.decorator.setMarkDecoration(position, view.state);
+		this.decorator.setMarkDecoration(position, view.state, showVisualIndicator);
 		this.decorations = this.decorator.getDecorations();
 	}
 
