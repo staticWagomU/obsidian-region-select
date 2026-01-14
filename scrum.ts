@@ -126,122 +126,9 @@ const scrum: ScrumDashboard = {
     ],
   },
 
+  // Completed PBIs: PBI-001 (set-mark), PBI-002 (select-to-mark), PBI-003 (clear-mark),
+  // PBI-004 (toggle ribbon), PBI-005 (visual indicator) - details in git history
   product_backlog: [
-    {
-      id: "PBI-001",
-      story: {
-        role: "Obsidianモバイルユーザー",
-        capability: "現在のカーソル位置をマーク（始点）として設定できる",
-        benefit: "範囲選択の始点を正確に指定できる",
-      },
-      acceptance_criteria: [
-        {
-          criterion: "set-markコマンドでカーソル位置が保存される",
-          verification: "コマンド実行後、マーク位置が正しく記録されていることを確認",
-        },
-        {
-          criterion: "マーク設定時にNoticeで位置が表示される",
-          verification: "「マーク設定: 行 N, 列 M」形式の通知が表示される",
-        },
-      ],
-      status: "done",
-    },
-    {
-      id: "PBI-002",
-      story: {
-        role: "Obsidianモバイルユーザー",
-        capability: "保存したマークから現在位置までのテキストを選択できる",
-        benefit: "ドラッグ操作なしで正確な範囲選択ができる",
-      },
-      acceptance_criteria: [
-        {
-          criterion: "select-to-markコマンドでマークから現在位置までが選択される",
-          verification: "Editor.setSelectionが正しいanchor/headで呼ばれる",
-        },
-        {
-          criterion: "マーク未設定時はエラー通知が表示される",
-          verification: "「マークが設定されていません」通知が表示される",
-        },
-      ],
-      status: "done",
-    },
-    {
-      id: "PBI-003",
-      story: {
-        role: "Obsidianモバイルユーザー",
-        capability: "設定したマークをクリアできる",
-        benefit: "不要なマークを解除して新しい選択を開始できる",
-      },
-      acceptance_criteria: [
-        {
-          criterion: "clear-markコマンドでマークが解除される",
-          verification: "マーク解除後、getMarkがnullを返す",
-        },
-        {
-          criterion: "マーク解除時にNoticeで確認が表示される",
-          verification: "「マークを解除しました」通知が表示される",
-        },
-      ],
-      status: "done",
-    },
-    {
-      id: "PBI-004",
-      story: {
-        role: "Obsidianモバイルユーザー",
-        capability: "リボンボタン1つでマーク設定と選択を切り替えられる",
-        benefit: "ワンタップで直感的に範囲選択操作ができる",
-      },
-      acceptance_criteria: [
-        {
-          criterion: "リボンボタンタップでマーク未設定時はSet Mark、設定済みはSelect to Markが実行される",
-          verification: "マーク状態に応じて適切なコマンドが呼ばれることを確認",
-        },
-        {
-          criterion: "マーク設定中はリボンアイコンが変化する",
-          verification: "setIcon呼び出しでアイコンが更新されることを確認",
-        },
-        {
-          criterion: "Select to Mark実行後にマークが自動クリアされる",
-          verification: "選択実行後、getMarkがnullを返しアイコンがリセットされることを確認",
-        },
-        {
-          criterion: "ファイル切り替え時にマークが自動クリアされる",
-          verification: "file-openイベントでclearMarkが呼ばれアイコンがリセットされることを確認",
-        },
-      ],
-      status: "done",
-    },
-    {
-      id: "PBI-005",
-      story: {
-        role: "Obsidianモバイルユーザー",
-        capability: "マークを設定した位置がエディタ上で視覚的に確認できる",
-        benefit: "選択範囲の始点がどこか一目で分かり、操作ミスを防げる",
-      },
-      acceptance_criteria: [
-        {
-          criterion: "マーク設定時にエディタ上でマーク位置が視覚的に表示される",
-          verification: "✓ MarkDecorator.setMarkDecoration()でDecoration.widgetを作成し、MarkViewPluginを通じてエディタに表示される実装を確認。テスト: MarkDecorator.test.ts L14-22",
-        },
-        {
-          criterion: "マーク解除時に視覚的表示が消える",
-          verification: "✓ MarkDecorator.clearMarkDecoration()でDecorationSetをDecoration.noneにリセットし、MarkManager.clearMark()経由で呼ばれることを確認。テスト: MarkDecorator.test.ts L24-33",
-        },
-        {
-          criterion: "ファイル切り替え時に視覚的表示が消える",
-          verification: "✓ main.tsでfile-openイベントリスナーを登録し、MarkManager.clearMark()を呼び出すことで視覚表示が消えることを確認。実装: main.ts L66-73",
-        },
-        {
-          criterion: "Select to Mark実行後に視覚的表示が消える",
-          verification: "✓ ToggleMarkRibbon.onClick()とtoggle-markコマンドでselect実行後にMarkManager.clearMark()を呼び出すことを確認。実装: ToggleMarkRibbon.ts L19-23, main.ts L119-130",
-        },
-        {
-          criterion: "マーカーはモバイルでも視認性が高いデザインである",
-          verification: "✓ MarkWidget.toDOM()で▶記号、インタラクティブアクセントカラー、太字、1.2emサイズのインラインスタイルを設定し、モバイルでも視認性が高いことを確認。実装: MarkDecorator.ts L6-20",
-        },
-      ],
-      status: "done",
-    },
     {
       id: "PBI-006",
       story: {
@@ -250,26 +137,11 @@ const scrum: ScrumDashboard = {
         benefit: "視覚表示が不要な場合はオフにして、好みに合わせた操作ができる",
       },
       acceptance_criteria: [
-        {
-          criterion: "プラグイン設定画面に視覚表示のトグル設定が存在する",
-          verification: "設定タブにトグルスイッチが表示されることを確認",
-        },
-        {
-          criterion: "設定がオフの場合、マーク設定時に視覚表示が行われない",
-          verification: "設定オフ時にset-mark実行してもマーカーが表示されないことを確認",
-        },
-        {
-          criterion: "設定がオンの場合、マーク設定時に視覚表示が行われる",
-          verification: "設定オン時にset-mark実行するとマーカーが表示されることを確認",
-        },
-        {
-          criterion: "設定変更は即座に反映される（プラグイン再起動不要）",
-          verification: "設定変更後、次のset-markで新しい設定が反映されることを確認",
-        },
-        {
-          criterion: "設定値は永続化される",
-          verification: "Obsidian再起動後も設定値が保持されていることを確認",
-        },
+        { criterion: "プラグイン設定画面に視覚表示のトグル設定が存在する", verification: "設定タブにトグルスイッチが表示される" },
+        { criterion: "設定がオフの場合、マーク設定時に視覚表示が行われない", verification: "設定オフ時にset-mark実行してもマーカー非表示" },
+        { criterion: "設定がオンの場合、マーク設定時に視覚表示が行われる", verification: "設定オン時にset-mark実行でマーカー表示" },
+        { criterion: "設定変更は即座に反映される（プラグイン再起動不要）", verification: "設定変更後、次のset-markで新設定が反映" },
+        { criterion: "設定値は永続化される", verification: "Obsidian再起動後も設定値が保持" },
       ],
       status: "draft",
     },
@@ -294,14 +166,14 @@ const scrum: ScrumDashboard = {
     { number: 1, pbi_id: "PBI-001", goal: "set-markコマンド実装、カーソル位置保存", status: "done", subtasks: [] },
   ],
 
-  // Only keep active improvements (completed ones archived in git history)
+  // Active improvements only (completed: type-safe wrappers, ViewPlugin docs, README)
   retrospectives: [
     {
-      sprint: 4,
+      sprint: 5,
       improvements: [
         { action: "main.tsの統合テストを追加する", timing: "sprint", status: "active", outcome: null },
+        { action: "MarkManager-MarkDecorator-MarkViewPlugin連携のE2Eテストを追加する", timing: "sprint", status: "active", outcome: null },
         { action: "Obsidian環境での統合テストを追加する", timing: "product", status: "active", outcome: null },
-        { action: "ユーザードキュメントを作成する", timing: "product", status: "active", outcome: null },
       ],
     },
   ],
