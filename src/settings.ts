@@ -36,5 +36,17 @@ export class RegionSelectSettingTab extends PluginSettingTab {
 						await this.plugin.saveSettings();
 					}),
 			);
+
+		new Setting(containerEl)
+			.setName("Show visual indicator")
+			.setDesc("Display a visual marker at the mark position")
+			.addToggle((toggle) =>
+				toggle
+					.setValue(this.plugin.settings.showVisualIndicator)
+					.onChange(async (value) => {
+						this.plugin.settings.showVisualIndicator = value;
+						await this.plugin.saveSettings();
+					}),
+			);
 	}
 }
