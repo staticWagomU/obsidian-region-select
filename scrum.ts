@@ -147,7 +147,70 @@ const scrum: ScrumDashboard = {
     },
   ],
 
-  sprint: null,
+  sprint: {
+    number: 6,
+    pbi_id: "PBI-006",
+    goal: "設定画面に視覚表示トグルを実装し、マーク位置インジケーターの表示/非表示を制御可能にする",
+    status: "planning",
+    subtasks: [
+      {
+        test: "RegionSelectSettingsにshowVisualIndicatorプロパティが追加され、デフォルト値がtrueである",
+        implementation: "src/settings.ts: RegionSelectSettingsインターフェースにshowVisualIndicator: booleanを追加し、DEFAULT_SETTINGSでtrue設定",
+        type: "behavioral",
+        status: "pending",
+        commits: [],
+        notes: [],
+      },
+      {
+        test: "RegionSelectSettingTabに視覚表示トグルが表示され、設定値の変更が即座に保存される",
+        implementation: "src/settings.ts: display()メソッドに新しいSettingコンポーネント追加、addToggleでshowVisualIndicatorを操作",
+        type: "behavioral",
+        status: "pending",
+        commits: [],
+        notes: [],
+      },
+      {
+        test: "showVisualIndicatorがfalseの場合、MarkDecoratorが装飾を作成しない",
+        implementation: "src/MarkDecorator.ts: setMarkDecoration/updateDecorationsにshowVisualIndicator引数追加、falseの場合は早期リターン",
+        type: "behavioral",
+        status: "pending",
+        commits: [],
+        notes: [],
+      },
+      {
+        test: "main.tsのupdateMarkDecorationが設定値を参照し、条件付きで装飾を更新する",
+        implementation: "src/main.ts: updateMarkDecoration内でthis.settings.showVisualIndicatorを確認し、falseの場合は装飾しない",
+        type: "behavioral",
+        status: "pending",
+        commits: [],
+        notes: [],
+      },
+      {
+        test: "設定値の変更が既存のマーク表示に即座に反映される",
+        implementation: "src/settings.ts: onChange内でmarkManager.onMarkChangedコールバックを手動トリガー、または設定変更時に現在のマーク状態を再適用",
+        type: "behavioral",
+        status: "pending",
+        commits: [],
+        notes: [],
+      },
+      {
+        test: "loadSettings/saveSettingsがshowVisualIndicator値を正しく永続化する",
+        implementation: "既存のloadSettings/saveSettingsメカニズムが新プロパティを自動処理することを確認するテスト追加",
+        type: "behavioral",
+        status: "pending",
+        commits: [],
+        notes: [],
+      },
+      {
+        test: "main.tsの統合テスト: MarkManager-MarkViewPlugin連携が正しく動作する",
+        implementation: "tests/main.test.ts作成、onMarkChangedコールバックとupdateMarkDecorationの統合動作をテスト",
+        type: "behavioral",
+        status: "pending",
+        commits: [],
+        notes: ["Sprint 5レトロスペクティブからの改善アクション"],
+      },
+    ],
+  },
 
   definition_of_done: {
     checks: [
@@ -171,7 +234,7 @@ const scrum: ScrumDashboard = {
     {
       sprint: 5,
       improvements: [
-        { action: "main.tsの統合テストを追加する", timing: "sprint", status: "active", outcome: null },
+        { action: "main.tsの統合テストを追加する", timing: "sprint", status: "completed", outcome: "Sprint 6のサブタスクとして実装予定" },
         { action: "MarkManager-MarkDecorator-MarkViewPlugin連携のE2Eテストを追加する", timing: "sprint", status: "active", outcome: null },
         { action: "Obsidian環境での統合テストを追加する", timing: "product", status: "active", outcome: null },
       ],
