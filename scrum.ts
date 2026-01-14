@@ -151,7 +151,7 @@ const scrum: ScrumDashboard = {
     number: 6,
     pbi_id: "PBI-006",
     goal: "設定画面に視覚表示トグルを実装し、マーク位置インジケーターの表示/非表示を制御可能にする",
-    status: "in_progress",
+    status: "review",
     subtasks: [
       {
         test: "RegionSelectSettingsにshowVisualIndicatorプロパティが追加され、デフォルト値がtrueである",
@@ -206,7 +206,7 @@ const scrum: ScrumDashboard = {
         implementation: "tests/main.test.ts作成、onMarkChangedコールバックとupdateMarkDecorationの統合動作をテスト",
         type: "behavioral",
         status: "completed",
-        commits: [],
+        commits: [{ hash: "0e05d8c", message: "test(main): add integration tests for MarkManager-MarkViewPlugin", phase: "green" }],
         notes: ["Sprint 5レトロスペクティブからの改善アクション"],
       },
     ],

@@ -29,17 +29,13 @@ function updateMarkDecoration(
 	position: EditorPosition | null,
 	showVisualIndicator: boolean = true
 ): void {
-	// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
 	const plugin = editorView.plugin(markViewPlugin);
 	if (plugin) {
 		if (position) {
-			// eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
 			plugin.setMark(position, editorView, showVisualIndicator);
 		} else {
-			// eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
 			plugin.clearMark();
 		}
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
 		editorView.update([]);
 	}
 }
