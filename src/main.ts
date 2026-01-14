@@ -82,9 +82,23 @@ export default class RegionSelectPlugin extends Plugin {
 			}
 		});
 
-		// Clear mark and reset icon on file-open
+		// Clear mark decoration on file change using active-leaf-change
+		// This fires BEFORE the new file is loaded, so we can clear the old editor's decoration
 		this.registerEvent(
-			this.app.workspace.on("file-open", () => {
+			this.app.workspace.on("active-leaf-change", () => {
+				// Clear decoration from current editor before switching
+				const view = this.app.workspace.getActiveViewOfType(MarkdownView);
+				if (view?.editor) {
+					const editorView = getEditorView(view.editor);
+					if (editorView) {
+						const plugin = editorView.plugin(this.markViewPlugin);
+						if (plugin) {
+							plugin.clearMark();
+							editorView.update([]);
+						}
+					}
+				}
+				// Clear mark state and reset icon
 				this.markManager.clearMark();
 				if (this.ribbonIcon) {
 					setIcon(this.ribbonIcon, "locate");
