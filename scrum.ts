@@ -240,7 +240,7 @@ const scrum: ScrumDashboard = {
           verification: "モバイル環境で視覚的マーカーが明確に見えることを手動確認",
         },
       ],
-      status: "ready",
+      status: "done",
     },
     {
       id: "PBI-006",
@@ -275,78 +275,7 @@ const scrum: ScrumDashboard = {
     },
   ],
 
-  sprint: {
-    number: 5,
-    pbi_id: "PBI-005",
-    goal: "マーク位置の視覚的インジケーターをCodeMirror 6 ViewPluginとDecorationで実装し、モバイルでも視認可能にする",
-    status: "planning",
-    subtasks: [
-      {
-        test: "DecorationSetの生成と更新機能のテスト",
-        implementation: "Decoration.widgetとDecorationSetを使用したMarkDecoratorクラス実装",
-        type: "behavioral",
-        status: "pending",
-        commits: [],
-        notes: [],
-      },
-      {
-        test: "マーク位置にwidgetが表示されることをテスト",
-        implementation: "Decoration.widgetでDOMノード生成、視認性の高いスタイル適用",
-        type: "behavioral",
-        status: "pending",
-        commits: [],
-        notes: [],
-      },
-      {
-        test: "ViewPluginがエディタに正しく登録されることをテスト",
-        implementation: "ViewPluginの実装とregisterEditorExtensionによる登録",
-        type: "behavioral",
-        status: "pending",
-        commits: [],
-        notes: [],
-      },
-      {
-        test: "setMark呼び出し時にDecorationが追加されることをテスト",
-        implementation: "MarkManagerのsetMarkとViewPlugin間のイベント伝達実装",
-        type: "behavioral",
-        status: "pending",
-        commits: [],
-        notes: [],
-      },
-      {
-        test: "clearMark呼び出し時にDecorationが削除されることをテスト",
-        implementation: "clearMarkとViewPlugin間のイベント伝達実装",
-        type: "behavioral",
-        status: "pending",
-        commits: [],
-        notes: [],
-      },
-      {
-        test: "file-openイベント時にDecorationがクリアされることをテスト",
-        implementation: "file-openハンドラでのViewPlugin状態リセット",
-        type: "behavioral",
-        status: "pending",
-        commits: [],
-        notes: [],
-      },
-      {
-        test: "select-to-mark実行後にDecorationがクリアされることをテスト",
-        implementation: "SelectToMarkCommandとViewPlugin連携でのクリア処理",
-        type: "behavioral",
-        status: "pending",
-        commits: [],
-        notes: [],
-      },
-      {
-        test: "モバイル環境でマーカーが視認できることを手動テスト",
-        implementation: "スタイル調整（必要に応じて）",
-        type: "behavioral",
-        status: "pending",
-        commits: [],
-        notes: [],
-      },
-    ],
-  },
+  sprint: null,
 
   definition_of_done: {
     checks: [
@@ -358,6 +287,7 @@ const scrum: ScrumDashboard = {
 
   // Completed sprints (details in git history: sprint-N-<uuid> tags)
   completed: [
+    { number: 5, pbi_id: "PBI-005", goal: "マーク位置の視覚的インジケーターをCodeMirror 6 ViewPluginとDecorationで実装し、モバイルでも視認可能にする", status: "done", subtasks: [] },
     { number: 4, pbi_id: "PBI-004", goal: "リボンボタンでマーク設定/選択切り替え、視覚フィードバック、自動クリア実装", status: "done", subtasks: [] },
     { number: 3, pbi_id: "PBI-003", goal: "clear-markコマンド実装、全コマンドmain.ts統合", status: "done", subtasks: [] },
     { number: 2, pbi_id: "PBI-002", goal: "select-to-markコマンド実装、Sprint 1改善完了", status: "done", subtasks: [] },
