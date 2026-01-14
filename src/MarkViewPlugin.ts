@@ -17,8 +17,19 @@ class MarkViewPluginValue {
 	}
 
 	update(_update: ViewUpdate) {
-		// Decorations are updated through setMark/clearMark methods
-		// called from the plugin's external API
+		// NOTE: This method intentionally does not handle ViewUpdate events
+		// because mark decorations are managed externally through MarkManager events.
+		//
+		// Design rationale:
+		// - Mark position is application state, not document state
+		// - Updates are triggered by user commands (set-mark, clear-mark), not by document edits
+		// - The MarkManager.onMarkChanged event handler calls setMark/clearMark explicitly
+		// - This avoids unnecessary decoration recalculations on every document change
+		//
+		// For document-driven decorations, this method would need to:
+		// 1. Check if the document changed (_update.docChanged)
+		// 2. Recalculate decoration positions based on the new document
+		// 3. Update this.decorations accordingly
 	}
 
 	setMark(position: EditorPosition, view: EditorView) {

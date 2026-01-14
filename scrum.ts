@@ -151,13 +151,13 @@ const scrum: ScrumDashboard = {
     number: 6,
     pbi_id: "PBI-006",
     goal: "設定画面に視覚表示トグルを実装し、マーク位置インジケーターの表示/非表示を制御可能にする",
-    status: "planning",
+    status: "in_progress",
     subtasks: [
       {
         test: "RegionSelectSettingsにshowVisualIndicatorプロパティが追加され、デフォルト値がtrueである",
         implementation: "src/settings.ts: RegionSelectSettingsインターフェースにshowVisualIndicator: booleanを追加し、DEFAULT_SETTINGSでtrue設定",
         type: "behavioral",
-        status: "pending",
+        status: "green",
         commits: [],
         notes: [],
       },

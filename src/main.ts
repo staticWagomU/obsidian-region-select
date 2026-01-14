@@ -1,4 +1,6 @@
-import { Notice, Plugin, MarkdownView, setIcon } from "obsidian";
+import { Notice, Plugin, MarkdownView, setIcon, Editor } from "obsidian";
+import { EditorView } from "@codemirror/view";
+import type { EditorPosition } from "obsidian";
 import { DEFAULT_SETTINGS, RegionSelectSettings, RegionSelectSettingTab } from "./settings";
 import { MarkManager } from "./MarkManager";
 import { SetMarkCommand } from "./SetMarkCommand";
@@ -6,6 +8,40 @@ import { SelectToMarkCommand } from "./SelectToMarkCommand";
 import { ClearMarkCommand } from "./ClearMarkCommand";
 import { ToggleMarkRibbon } from "./ToggleMarkRibbon";
 import { createMarkViewPlugin } from "./MarkViewPlugin";
+
+/**
+ * Type-safe wrapper to access CodeMirror 6 EditorView from Obsidian Editor
+ * Obsidian's Editor interface doesn't expose the underlying CodeMirror view,
+ * so we need to access it via 'cm' property which is implementation detail.
+ */
+function getEditorView(editor: Editor): EditorView | null {
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-member-access
+	return (editor as any).cm as EditorView | null;
+}
+
+/**
+ * Type-safe wrapper to update mark decoration in the ViewPlugin
+ * This encapsulates the unsafe plugin access pattern in one place.
+ */
+function updateMarkDecoration(
+	editorView: EditorView,
+	markViewPlugin: ReturnType<typeof createMarkViewPlugin>,
+	position: EditorPosition | null
+): void {
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+	const plugin = editorView.plugin(markViewPlugin);
+	if (plugin) {
+		if (position) {
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+			plugin.setMark(position, editorView);
+		} else {
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+			plugin.clearMark();
+		}
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+		editorView.update([]);
+	}
+}
 
 export default class RegionSelectPlugin extends Plugin {
 	settings: RegionSelectSettings;
@@ -25,22 +61,9 @@ export default class RegionSelectPlugin extends Plugin {
 		this.markManager.onMarkChanged((position) => {
 			const view = this.app.workspace.getActiveViewOfType(MarkdownView);
 			if (view?.editor) {
-				// eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-				const editorView = (view.editor as any).cm;
+				const editorView = getEditorView(view.editor);
 				if (editorView) {
-					// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
-					const plugin = editorView.plugin(this.markViewPlugin);
-					if (plugin) {
-						if (position) {
-							// eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
-							plugin.setMark(position, editorView);
-						} else {
-							// eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
-							plugin.clearMark();
-						}
-						// eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
-						editorView.update([]);
-					}
+					updateMarkDecoration(editorView, this.markViewPlugin, position);
 				}
 			}
 		});

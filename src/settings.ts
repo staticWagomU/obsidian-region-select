@@ -3,10 +3,12 @@ import type RegionSelectPlugin from "./main";
 
 export interface RegionSelectSettings {
 	mySetting: string;
+	showVisualIndicator: boolean;
 }
 
 export const DEFAULT_SETTINGS: RegionSelectSettings = {
 	mySetting: "default",
+	showVisualIndicator: true,
 };
 
 export class RegionSelectSettingTab extends PluginSettingTab {
