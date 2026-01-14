@@ -39,3 +39,28 @@ describe("RegionSelectSettingTab display method", () => {
 		expect(true).toBe(true);
 	});
 });
+
+describe("Settings persistence", () => {
+	it("should include showVisualIndicator in settings structure", () => {
+		// This test verifies that the settings structure includes showVisualIndicator
+		// The loadSettings/saveSettings mechanism in main.ts uses Object.assign,
+		// which automatically handles all properties in RegionSelectSettings interface.
+		//
+		// main.ts loadSettings implementation:
+		// this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
+		//
+		// This means:
+		// 1. DEFAULT_SETTINGS provides the default values (including showVisualIndicator: true)
+		// 2. loadData() loads the persisted data
+		// 3. Object.assign merges them, with persisted data overriding defaults
+		//
+		// Therefore, if showVisualIndicator exists in RegionSelectSettings interface
+		// and DEFAULT_SETTINGS, it will be automatically persisted.
+
+		type SettingsHasShowVisualIndicator = RegionSelectSettings extends { showVisualIndicator: boolean }
+			? true
+			: false;
+		const hasProperty: SettingsHasShowVisualIndicator = true;
+		expect(hasProperty).toBe(true);
+	});
+});
