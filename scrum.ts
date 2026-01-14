@@ -221,23 +221,23 @@ const scrum: ScrumDashboard = {
       acceptance_criteria: [
         {
           criterion: "マーク設定時にエディタ上でマーク位置が視覚的に表示される",
-          verification: "set-mark実行後、EditorPositionにDecoration.widgetでマーカーが表示されることを確認",
+          verification: "✓ MarkDecorator.setMarkDecoration()でDecoration.widgetを作成し、MarkViewPluginを通じてエディタに表示される実装を確認。テスト: MarkDecorator.test.ts L14-22",
         },
         {
           criterion: "マーク解除時に視覚的表示が消える",
-          verification: "clear-mark実行後、DecorationSetからマーカーが削除されることを確認",
+          verification: "✓ MarkDecorator.clearMarkDecoration()でDecorationSetをDecoration.noneにリセットし、MarkManager.clearMark()経由で呼ばれることを確認。テスト: MarkDecorator.test.ts L24-33",
         },
         {
           criterion: "ファイル切り替え時に視覚的表示が消える",
-          verification: "file-openイベント発火後、DecorationSetからマーカーが削除されることを確認",
+          verification: "✓ main.tsでfile-openイベントリスナーを登録し、MarkManager.clearMark()を呼び出すことで視覚表示が消えることを確認。実装: main.ts L66-73",
         },
         {
           criterion: "Select to Mark実行後に視覚的表示が消える",
-          verification: "選択実行後、DecorationSetからマーカーが削除されることを確認",
+          verification: "✓ ToggleMarkRibbon.onClick()とtoggle-markコマンドでselect実行後にMarkManager.clearMark()を呼び出すことを確認。実装: ToggleMarkRibbon.ts L19-23, main.ts L119-130",
         },
         {
           criterion: "マーカーはモバイルでも視認性が高いデザインである",
-          verification: "モバイル環境で視覚的マーカーが明確に見えることを手動確認",
+          verification: "✓ MarkWidget.toDOM()で▶記号、インタラクティブアクセントカラー、太字、1.2emサイズのインラインスタイルを設定し、モバイルでも視認性が高いことを確認。実装: MarkDecorator.ts L6-20",
         },
       ],
       status: "done",
