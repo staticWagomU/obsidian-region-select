@@ -46,6 +46,13 @@ export class RegionSelectSettingTab extends PluginSettingTab {
 					.onChange(async (value) => {
 						this.plugin.settings.showVisualIndicator = value;
 						await this.plugin.saveSettings();
+
+						// Trigger mark decoration update to reflect the new setting immediately
+						const currentMark = this.plugin.markManager.getMark();
+						if (currentMark) {
+							// Re-trigger the onMarkChanged callback to update decoration with new setting
+							this.plugin.markManager.setMark(currentMark);
+						}
 					}),
 			);
 	}

@@ -46,7 +46,7 @@ function updateMarkDecoration(
 
 export default class RegionSelectPlugin extends Plugin {
 	settings: RegionSelectSettings;
-	private markManager: MarkManager;
+	markManager: MarkManager;
 	private ribbonIcon: HTMLElement | null = null;
 	private markViewPlugin = createMarkViewPlugin();
 
