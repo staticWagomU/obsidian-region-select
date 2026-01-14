@@ -1,6 +1,24 @@
-import { Decoration, DecorationSet } from "@codemirror/view";
+import { Decoration, DecorationSet, WidgetType } from "@codemirror/view";
 import { EditorState } from "@codemirror/state";
 import type { EditorPosition } from "obsidian";
+
+class MarkWidget extends WidgetType {
+	toDOM(): HTMLElement {
+		const span = document.createElement("span");
+		span.className = "region-select-mark";
+		span.textContent = "▶";
+		// Mobile-friendly inline styles for high visibility
+		span.style.cssText = `
+			color: var(--interactive-accent);
+			font-weight: bold;
+			font-size: 1.2em;
+			margin-left: -0.5ch;
+			position: relative;
+			z-index: 1;
+		`;
+		return span;
+	}
+}
 
 export class MarkDecorator {
 	private decorations: DecorationSet = Decoration.none;
@@ -8,6 +26,10 @@ export class MarkDecorator {
 
 	getDecorations(): DecorationSet {
 		return this.decorations;
+	}
+
+	createMarkWidget(): MarkWidget {
+		return new MarkWidget();
 	}
 
 	setMarkDecoration(position: EditorPosition): void {
@@ -26,18 +48,11 @@ export class MarkDecorator {
 			return;
 		}
 
-		// Create a simple widget decoration
+		// Create a widget decoration with MarkWidget
 		// Note: In real usage, this needs an EditorState to compute the actual position
 		// For now, we'll create a placeholder decoration to pass the tests
 		const widget = Decoration.widget({
-			widget: {
-				toDOM: () => {
-					const span = document.createElement("span");
-					span.className = "region-select-mark";
-					span.textContent = "▶";
-					return span;
-				},
-			},
+			widget: new MarkWidget(),
 			side: 1,
 		});
 
