@@ -143,7 +143,7 @@ const scrum: ScrumDashboard = {
         { criterion: "設定変更は即座に反映される（プラグイン再起動不要）", verification: "設定変更後、次のset-markで新設定が反映" },
         { criterion: "設定値は永続化される", verification: "Obsidian再起動後も設定値が保持" },
       ],
-      status: "draft",
+      status: "ready",
     },
   ],
 
