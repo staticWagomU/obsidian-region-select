@@ -66,4 +66,59 @@ describe("MarkManager", () => {
 
 		expect(manager.hasMark()).toBe(false);
 	});
+
+	it("should notify listener when mark is set", () => {
+		const manager = new MarkManager();
+		const position: EditorPosition = { line: 5, ch: 10 };
+		let callbackCalled = false;
+		let receivedPosition: EditorPosition | null = null;
+
+		manager.onMarkChanged((pos) => {
+			callbackCalled = true;
+			receivedPosition = pos;
+		});
+
+		manager.setMark(position);
+
+		expect(callbackCalled).toBe(true);
+		expect(receivedPosition).toEqual(position);
+	});
+
+	it("should notify listener when mark is cleared", () => {
+		const manager = new MarkManager();
+		const position: EditorPosition = { line: 5, ch: 10 };
+		let clearCallbackCalled = false;
+
+		manager.setMark(position);
+
+		manager.onMarkChanged((pos) => {
+			if (pos === null) {
+				clearCallbackCalled = true;
+			}
+		});
+
+		manager.clearMark();
+
+		expect(clearCallbackCalled).toBe(true);
+	});
+
+	it("should support multiple listeners", () => {
+		const manager = new MarkManager();
+		const position: EditorPosition = { line: 5, ch: 10 };
+		let listener1Called = false;
+		let listener2Called = false;
+
+		manager.onMarkChanged(() => {
+			listener1Called = true;
+		});
+
+		manager.onMarkChanged(() => {
+			listener2Called = true;
+		});
+
+		manager.setMark(position);
+
+		expect(listener1Called).toBe(true);
+		expect(listener2Called).toBe(true);
+	});
 });
