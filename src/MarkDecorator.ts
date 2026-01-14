@@ -32,9 +32,9 @@ export class MarkDecorator {
 		return new MarkWidget();
 	}
 
-	setMarkDecoration(position: EditorPosition, state?: EditorState): void {
+	setMarkDecoration(position: EditorPosition, state?: EditorState, showVisualIndicator: boolean = true): void {
 		this.currentMarkPosition = position;
-		this.updateDecorations(state);
+		this.updateDecorations(state, showVisualIndicator);
 	}
 
 	clearMarkDecoration(): void {
@@ -42,8 +42,8 @@ export class MarkDecorator {
 		this.decorations = Decoration.none;
 	}
 
-	private updateDecorations(state?: EditorState): void {
-		if (!this.currentMarkPosition) {
+	private updateDecorations(state?: EditorState, showVisualIndicator: boolean = true): void {
+		if (!this.currentMarkPosition || !showVisualIndicator) {
 			this.decorations = Decoration.none;
 			return;
 		}
