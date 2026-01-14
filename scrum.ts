@@ -150,23 +150,14 @@ const scrum: ScrumDashboard = {
     { number: 1, pbi_id: "PBI-001", goal: "set-markコマンド実装、カーソル位置保存", status: "done", subtasks: [] },
   ],
 
-  // Active improvements only (completed: type-safe wrappers, ViewPlugin docs, README, main.ts integration tests, mySetting cleanup)
+  // Active improvements only - completed archived in git (mySetting cleanup, main.ts tests, type-safe wrappers, README)
   retrospectives: [
     {
       sprint: 6,
       improvements: [
-        { action: "未使用のmySetting設定項目を削除し、settings.tsをクリーンアップ", timing: "immediate", status: "completed", outcome: "Retrospective内で完了: RegionSelectSettingsからmySettingプロパティ削除、DEFAULT_SETTINGSとdisplay()メソッドを簡潔化" },
-        { action: "MarkManager-MarkDecorator-MarkViewPlugin連携のE2Eテストを追加する", timing: "product", status: "active", outcome: null },
+        { action: "E2Eテストを追加する (コンポーネント間連携)", timing: "product", status: "active", outcome: null },
         { action: "Obsidian環境での統合テストを追加する", timing: "product", status: "active", outcome: null },
         { action: "プロジェクト完了後のメンテナンス体制を定義する", timing: "product", status: "active", outcome: null },
-      ],
-    },
-    {
-      sprint: 5,
-      improvements: [
-        { action: "main.tsの統合テストを追加する", timing: "sprint", status: "completed", outcome: "Sprint 6で完了: src/main.test.ts追加、アーキテクチャ契約を文書化" },
-        { action: "MarkManager-MarkDecorator-MarkViewPlugin連携のE2Eテストを追加する", timing: "sprint", status: "completed", outcome: "Sprint 6 Retrospectiveでproductタイミングに変更し、Product Backlogへ移動" },
-        { action: "Obsidian環境での統合テストを追加する", timing: "product", status: "active", outcome: null },
       ],
     },
   ],
