@@ -67,7 +67,7 @@ describe("MarkDecorator", () => {
 	it("should create widget with inline styles for visibility", () => {
 		const decorator = new MarkDecorator();
 		const widget = decorator.createMarkWidget();
-		const dom = widget.toDOM() as HTMLElement;
+		const dom = widget.toDOM();
 
 		// Check that the widget has style properties for mobile visibility
 		expect(dom.style.cssText).toBeTruthy();

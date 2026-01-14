@@ -32,9 +32,9 @@ export class MarkDecorator {
 		return new MarkWidget();
 	}
 
-	setMarkDecoration(position: EditorPosition): void {
+	setMarkDecoration(position: EditorPosition, state?: EditorState): void {
 		this.currentMarkPosition = position;
-		this.updateDecorations();
+		this.updateDecorations(state);
 	}
 
 	clearMarkDecoration(): void {
@@ -42,22 +42,34 @@ export class MarkDecorator {
 		this.decorations = Decoration.none;
 	}
 
-	private updateDecorations(): void {
+	private updateDecorations(state?: EditorState): void {
 		if (!this.currentMarkPosition) {
 			this.decorations = Decoration.none;
 			return;
 		}
 
 		// Create a widget decoration with MarkWidget
-		// Note: In real usage, this needs an EditorState to compute the actual position
-		// For now, we'll create a placeholder decoration to pass the tests
 		const widget = Decoration.widget({
 			widget: new MarkWidget(),
 			side: 1,
 		});
 
-		// For testing purposes, create a decoration set with a dummy position
-		// In real implementation, this will be integrated with EditorState
-		this.decorations = Decoration.set([widget.range(0)]);
+		// If state is provided, compute actual position from EditorPosition
+		if (state) {
+			const { line, ch } = this.currentMarkPosition;
+			const doc = state.doc;
+
+			// EditorPosition is 0-based for line, convert to CodeMirror offset
+			if (line < doc.lines) {
+				const lineObj = doc.line(line + 1); // CodeMirror lines are 1-based
+				const offset = Math.min(lineObj.from + ch, lineObj.to);
+				this.decorations = Decoration.set([widget.range(offset)]);
+			} else {
+				this.decorations = Decoration.none;
+			}
+		} else {
+			// For testing purposes without state
+			this.decorations = Decoration.set([widget.range(0)]);
+		}
 	}
 }
